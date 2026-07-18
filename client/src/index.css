@@ -1,0 +1,387 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --color-card: var(--surface);
+  --color-card-foreground: var(--text);
+  --color-primary: var(--accent);
+  --color-primary-foreground: #050505;
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted);
+  --color-border: var(--border);
+  --color-ring: var(--accent);
+  --color-accent: var(--accent);
+  --color-accent-foreground: #050505;
+  --color-bg-surface: var(--surface);
+  --color-bg-hero: #0A0A0A;
+  --color-text-primary: var(--text);
+  --color-text-secondary: var(--muted);
+  --color-text-tertiary: #666666;
+  --color-accent-blue: var(--accent);
+  --color-accent-blue-hover: var(--accent-hover);
+  --color-accent-success: #22C55E;
+  --color-border-subtle: var(--border);
+  --color-border-strong: rgba(255,255,255,0.15);
+  --color-bg-glass: rgba(255,255,255,0.03);
+  --color-bg-glass-hover: rgba(255,255,255,0.06);
+}
+
+/* ============================================================================
+   CINEMATIC DARK EDITORIAL — DESIGN SYSTEM
+   Fonts: General Sans (display/body) · Satoshi (accents) · Inter (fallback)
+   Philosophy: Swiss typography, luxury spacing, motion over decoration
+   ============================================================================ */
+
+:root {
+  --bg: #050505;
+  --surface: #0D0D0D;
+  --text: #F5F5F5;
+  --muted: #9A9A9A;
+  --accent: #5E9EFF;
+  --accent-hover: #82B4FF;
+  --border: rgba(255,255,255,0.08);
+  --radius: 18px;
+  --glow: 0 0 80px rgba(94,158,255,0.18);
+  --card-shadow: 0 20px 80px rgba(0,0,0,0.40);
+  --glass-bg: rgba(255,255,255,0.03);
+  --glass-border: rgba(255,255,255,0.08);
+  --glass-blur: 20px;
+}
+
+/* ============================================================================
+   BASE
+   ============================================================================ */
+@layer base {
+  * { 
+    box-sizing: border-box; 
+    border-color: var(--border); 
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-drag: none;
+    cursor: default; /* Removes the text 'I-beam' mouse cursor */
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'General Sans', 'Satoshi', 'Inter', -apple-system, sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'General Sans', 'Inter', sans-serif;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  a { color: var(--accent); text-decoration: none; transition: color 0.25s; }
+  a:hover { color: var(--accent-hover); }
+
+  ::selection { background: var(--accent); color: #050505; }
+
+  /* Custom Premium Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #020202;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 999px;
+    border: 2px solid #020202;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  button:not(:disabled), a[href], [role="button"] { cursor: pointer; }
+}
+
+/* ============================================================================
+   COMPONENTS
+   ============================================================================ */
+@layer components {
+  .container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+  @media (max-width: 1023px) { .container { padding: 0 24px; } }
+  @media (max-width: 767px) { .container { padding: 0 20px; } }
+
+  /* Glass Card */
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    box-shadow: var(--card-shadow);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.25s,
+                box-shadow 0.25s;
+  }
+  .glass-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255,255,255,0.15);
+    box-shadow: 0 30px 100px rgba(0,0,0,0.5);
+  }
+
+  /* Primary Button */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    height: 52px;
+    padding: 0 34px;
+    background: var(--accent);
+    color: #050505;
+    font-family: 'General Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    border: none;
+    border-radius: 8px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.25s;
+  }
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(94,158,255,0.3);
+  }
+  .btn-primary:active { transform: scale(0.98); }
+
+  /* Secondary Button */
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    height: 52px;
+    padding: 0 34px;
+    background: transparent;
+    color: var(--text);
+    font-family: 'General Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    transition: background 0.25s, border-color 0.25s, transform 0.25s;
+  }
+  .btn-secondary:hover {
+    background: var(--glass-bg);
+    border-color: rgba(255,255,255,0.25);
+    transform: translateY(-3px);
+  }
+
+  /* Tag */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 36px;
+    padding: 0 20px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--glass-bg);
+    font-family: 'Satoshi', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Section Label */
+  .section-label {
+    font-family: 'Satoshi', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Accent Divider */
+  .accent-line {
+    width: 48px;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  /* Noise Overlay */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 128px;
+  }
+}
+
+/* ============================================================================
+   ANIMATIONS
+   ============================================================================ */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes float-alt {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.25; }
+}
+
+/* ============================================================================
+   REDUCED MOTION
+   ============================================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================================
+   GLOBAL STARFIELD
+   ============================================================================ */
+.global-stars {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    /* Layer 1 — big bright stars */
+    radial-gradient(2.5px 2.5px at 4% 8%, rgba(255,255,255,1), transparent),
+    radial-gradient(3px 3px at 11% 22%, rgba(255,255,255,1), transparent),
+    radial-gradient(2px 2px at 18% 45%, rgba(255,255,255,0.9), transparent),
+    radial-gradient(2.5px 2.5px at 27% 12%, rgba(255,255,255,1), transparent),
+    radial-gradient(2px 2px at 33% 68%, rgba(255,255,255,0.95), transparent),
+    radial-gradient(3px 3px at 42% 5%, rgba(255,255,255,1), transparent),
+    radial-gradient(2px 2px at 51% 38%, rgba(255,255,255,0.9), transparent),
+    radial-gradient(2.5px 2.5px at 58% 82%, rgba(255,255,255,1), transparent),
+    radial-gradient(2px 2px at 66% 15%, rgba(255,255,255,0.95), transparent),
+    radial-gradient(3px 3px at 74% 55%, rgba(255,255,255,1), transparent),
+    radial-gradient(2px 2px at 81% 30%, rgba(255,255,255,0.9), transparent),
+    radial-gradient(2.5px 2.5px at 89% 72%, rgba(255,255,255,1), transparent),
+    radial-gradient(2px 2px at 96% 48%, rgba(255,255,255,0.95), transparent),
+    radial-gradient(2.5px 2.5px at 7% 92%, rgba(255,255,255,1), transparent),
+    radial-gradient(3px 3px at 55% 60%, rgba(255,255,255,1), transparent),
+    radial-gradient(2px 2px at 38% 28%, rgba(255,255,255,0.9), transparent),
+    /* Layer 2 — medium stars */
+    radial-gradient(1.8px 1.8px at 3% 35%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1.5px 1.5px at 13% 58%, rgba(255,255,255,0.75), transparent),
+    radial-gradient(1.8px 1.8px at 22% 80%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1.5px 1.5px at 31% 42%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1.8px 1.8px at 39% 95%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1.5px 1.5px at 48% 18%, rgba(255,255,255,0.75), transparent),
+    radial-gradient(1.8px 1.8px at 57% 52%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1.5px 1.5px at 64% 75%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1.8px 1.8px at 72% 32%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1.5px 1.5px at 80% 88%, rgba(255,255,255,0.75), transparent),
+    radial-gradient(1.8px 1.8px at 88% 10%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1.5px 1.5px at 95% 65%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1.8px 1.8px at 6% 78%, rgba(255,255,255,0.75), transparent),
+    radial-gradient(1.5px 1.5px at 45% 45%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1.8px 1.8px at 69% 42%, rgba(255,255,255,0.7), transparent),
+    /* Layer 3 — small stars */
+    radial-gradient(1px 1px at 2% 18%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 8% 48%, rgba(255,255,255,0.55), transparent),
+    radial-gradient(1px 1px at 16% 70%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 24% 25%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 35% 55%, rgba(255,255,255,0.55), transparent),
+    radial-gradient(1px 1px at 43% 85%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 52% 8%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 60% 35%, rgba(255,255,255,0.55), transparent),
+    radial-gradient(1px 1px at 68% 62%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 77% 20%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 84% 45%, rgba(255,255,255,0.55), transparent),
+    radial-gradient(1px 1px at 92% 78%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 98% 12%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 5% 62%, rgba(255,255,255,0.55), transparent),
+    radial-gradient(1px 1px at 29% 92%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 46% 30%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 73% 88%, rgba(255,255,255,0.55), transparent),
+    radial-gradient(1px 1px at 86% 58%, rgba(255,255,255,0.5), transparent),
+    /* Layer 4 — tiny dust stars */
+    radial-gradient(0.8px 0.8px at 1% 42%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(0.8px 0.8px at 9% 15%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(0.8px 0.8px at 19% 88%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(0.8px 0.8px at 28% 5%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(0.8px 0.8px at 37% 72%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(0.8px 0.8px at 46% 22%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(0.8px 0.8px at 55% 48%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(0.8px 0.8px at 63% 90%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(0.8px 0.8px at 71% 10%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(0.8px 0.8px at 79% 35%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(0.8px 0.8px at 87% 68%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(0.8px 0.8px at 94% 5%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(0.8px 0.8px at 4% 75%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(0.8px 0.8px at 14% 32%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(0.8px 0.8px at 23% 58%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(0.8px 0.8px at 34% 18%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(0.8px 0.8px at 44% 82%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(0.8px 0.8px at 53% 2%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(0.8px 0.8px at 62% 55%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(0.8px 0.8px at 70% 78%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(0.8px 0.8px at 82% 42%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(0.8px 0.8px at 90% 25%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(0.8px 0.8px at 97% 85%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(0.8px 0.8px at 12% 95%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(0.8px 0.8px at 40% 65%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(0.8px 0.8px at 76% 52%, rgba(255,255,255,0.35), transparent);
+  animation: star-twinkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes star-twinkle {
+  0% { opacity: 0.5; }
+  50% { opacity: 0.85; }
+  100% { opacity: 0.6; }
+}
+
+/* Timeline mobile: single-column left-aligned */
+@media (max-width: 767px) {
+  .experience-section .experience-line {
+    left: 20px !important;
+    transform: none !important;
+  }
+
+  .experience-section .experience-dot {
+    left: 20px !important;
+  }
+
+  .experience-section .experience-item {
+    justify-content: flex-end !important;
+  }
+
+  .experience-section .experience-card {
+    width: calc(100% - 50px) !important;
+    margin-left: auto;
+  }
+}
