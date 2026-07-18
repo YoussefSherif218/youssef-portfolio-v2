@@ -16,6 +16,7 @@ export default function Navigation() {
     { label: 'Experience', href: '#experience' },
     { label: 'Projects', href: '#projects' },
     { label: 'Skills', href: '#skills' },
+    { label: 'Credentials', href: '#credentials' },
     { label: 'Certifications', href: '#certifications' },
     { label: 'Contact', href: '#contact' },
   ];
@@ -25,9 +26,9 @@ export default function Navigation() {
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
       style={{
         height: 72,
-        background: scrolled ? 'rgba(5,5,5,0.6)' : 'transparent',
+        background: scrolled ? 'rgba(10,8,6,0.8)' : 'transparent',
         backdropFilter: scrolled ? 'blur(20px)' : 'none',
-        borderBottom: scrolled ? '1px solid rgba(255,255,255,0.08)' : '1px solid transparent',
+        borderBottom: scrolled ? '1px solid var(--border)' : '1px solid transparent',
       }}
     >
       <div className="container h-full flex items-center justify-between">
@@ -69,9 +70,9 @@ export default function Navigation() {
         <div
           className="md:hidden"
           style={{
-            background: 'rgba(5,5,5,0.95)',
+            background: 'rgba(10,8,6,0.95)',
             backdropFilter: 'blur(20px)',
-            borderTop: '1px solid rgba(255,255,255,0.08)',
+            borderTop: '1px solid var(--border)',
             padding: '24px 20px',
           }}
         >

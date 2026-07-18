@@ -1,7 +1,35 @@
+import { useEffect, useRef } from 'react';
 import { useGsapSection } from '@/hooks/useGsap';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Experience() {
   const ref = useGsapSection<HTMLElement>();
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const flashRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!timelineRef.current || !flashRef.current) return;
+
+    // Animate the flash down the timeline as user scrolls
+    gsap.fromTo(flashRef.current,
+      { top: '0%' },
+      {
+        top: '100%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: timelineRef.current,
+          start: 'top 80%',
+          end: 'bottom 20%',
+          scrub: 1,
+        },
+      }
+    );
+
+    return () => { ScrollTrigger.getAll().forEach(t => t.kill()); };
+  }, []);
 
   const items = [
     { title: 'Applied AI & Data Analytics Scholar', co: 'Digilians Initiative — MCIT', p: 'Dec 2025 — Present', year: '2026', desc: 'Selected for a 9-month scholarship by Egypt\'s Ministry of Communications. Applying statistics, probability, and data analysis using Python, SQL, and Excel.', tags: ['Python', 'SQL', 'Excel', 'Statistics', 'ML', 'DL', 'Tableau', 'Power BI'], cur: true, type: 'work' },
@@ -38,7 +66,7 @@ export default function Experience() {
           </div>
 
           {/* Timeline container */}
-          <div className="experience-timeline" style={{ position: 'relative', paddingBottom: 40 }}>
+          <div className="experience-timeline" ref={timelineRef} style={{ position: 'relative', paddingBottom: 40 }}>
             {/* Central vertical line */}
             <div className="experience-line" style={{
               position: 'absolute',
@@ -49,6 +77,22 @@ export default function Experience() {
               background: 'repeating-linear-gradient(to bottom, var(--accent) 0, var(--accent) 6px, transparent 6px, transparent 14px)',
               opacity: 0.35,
               transform: 'translateX(-50%)',
+            }} />
+
+            {/* Scrolling flash */}
+            <div ref={flashRef} style={{
+              position: 'absolute',
+              left: '50%',
+              top: 0,
+              width: 4,
+              height: 120,
+              transform: 'translateX(-50%)',
+              background: 'linear-gradient(to bottom, transparent, var(--accent), transparent)',
+              borderRadius: 4,
+              zIndex: 3,
+              pointerEvents: 'none',
+              filter: 'blur(2px)',
+              boxShadow: '0 0 20px var(--accent), 0 0 40px var(--accent), 0 0 60px var(--accent)',
             }} />
 
             {sorted.map((item, i) => {
@@ -78,7 +122,7 @@ export default function Experience() {
                     border: `2px solid var(--accent)`,
                     transform: 'translate(-50%, -50%)',
                     zIndex: 2,
-                    boxShadow: item.cur ? '0 0 16px rgba(94,158,255,0.5)' : 'none',
+                    boxShadow: item.cur ? '0 0 16px rgba(196,168,130,0.5)' : 'none',
                   }} />
 
                   {/* Year label on the line */}
@@ -130,8 +174,8 @@ export default function Experience() {
                           alignItems: 'center',
                           gap: 5,
                           padding: '3px 10px',
-                          background: 'rgba(94,158,255,0.12)',
-                          border: '1px solid rgba(94,158,255,0.25)',
+                          background: 'rgba(196,168,130,0.12)',
+                          border: '1px solid rgba(196,168,130,0.25)',
                           borderRadius: 999,
                           fontSize: 10,
                           fontWeight: 700,
@@ -163,8 +207,8 @@ export default function Experience() {
                             alignItems: 'center',
                             height: 24,
                             padding: '0 10px',
-                            background: 'rgba(94,158,255,0.06)',
-                            border: '1px solid rgba(94,158,255,0.15)',
+                            background: 'rgba(196,168,130,0.06)',
+                            border: '1px solid rgba(196,168,130,0.15)',
                             borderRadius: 6,
                             fontFamily: "'Satoshi', sans-serif",
                             fontSize: 11,

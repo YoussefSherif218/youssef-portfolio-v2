@@ -9,7 +9,7 @@ export default function Contact() {
       <div className="container">
         <div style={{ maxWidth: 1000, margin: '0 auto' }}>
           <div className="mb-16" data-gsap="fade-up">
-            <p className="section-label mb-4">06 / Contact</p>
+            <p className="section-label mb-4">07 / Contact</p>
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, marginBottom: 20 }}>
               Let's Work <span style={{ color: 'var(--accent)' }}>Together</span>
             </h2>

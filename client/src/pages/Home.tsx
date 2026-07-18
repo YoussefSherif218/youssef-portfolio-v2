@@ -4,6 +4,7 @@ import About from '@/components/About';
 import Experience from '@/components/Experience';
 import Projects from '@/components/Projects';
 import Skills from '@/components/Skills';
+import Credentials from '@/components/Credentials';
 import Certifications from '@/components/Certifications';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
@@ -25,7 +26,13 @@ import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen text-foreground">
+      {/* Galaxy nebula background */}
+      <div className="galaxy-bg" />
+
+      {/* Milky Way dust overlay */}
+      <div className="galaxy-dust" />
+
       {/* Global Starfield */}
       <div className="global-stars" />
 
@@ -46,6 +53,9 @@ export default function Home() {
 
       {/* Skills Section */}
       <Skills />
+
+      {/* Credentials Section */}
+      <Credentials />
 
       {/* Certifications Section */}
       <Certifications />

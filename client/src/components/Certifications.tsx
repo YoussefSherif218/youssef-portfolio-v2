@@ -7,7 +7,6 @@ export default function Certifications() {
   const [selected, setSelected] = useState<string | null>(null);
 
   const certifications = [
-    { name: 'Microsoft Certified Power BI Data Analyst Associate (PL-300)', image: '/certifications/microsoft-certified-power-bi-data-analyst-associate-pl-300.jpg', pdf: '/Microsoft Certified Power BI Data Analyst Associate (PL-300).pdf' },
     { name: 'Foundations: Data, Data, Everywhere', image: '/certifications/foundations-data-data-everywhere.png', pdf: '/Foundations Data, Data, Everywhere.pdf' },
     { name: 'Ask Questions to Make Data-Driven Decisions', image: '/certifications/ask-questions-to-make-data-driven-decisions.png', pdf: '/Ask Questions to Make Data-Driven Decisions.pdf' },
     { name: 'Prepare Data for Exploration', image: '/certifications/prepare-data-for-exploration.png', pdf: '/Prepare Data for Exploration.pdf' },
@@ -23,7 +22,7 @@ export default function Certifications() {
         <div className="container">
           <div style={{ maxWidth: 1000, margin: '0 auto' }}>
             <div className="mb-16" data-gsap="fade-up">
-              <p className="section-label mb-4">05 / Certifications</p>
+              <p className="section-label mb-4">06 / Certifications</p>
               <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, marginBottom: 20 }}>
                 Professional <span style={{ color: 'var(--accent)' }}>Certifications</span>
               </h2>

@@ -1,61 +1,285 @@
 import { useGsapSection } from '@/hooks/useGsap';
-import { ArrowRight, ExternalLink, Github } from 'lucide-react';
 
 export default function Projects() {
   const ref = useGsapSection<HTMLElement>();
 
   const projects = [
-    { title: 'RetailPulse AI', sub: 'Customer Segmentation Engine', year: '2026', desc: 'Built an end-to-end ML pipeline on the UCI Online Retail II dataset (~1M rows) to segment customers into 4 actionable business archetypes using K-Means clustering. Engineered RFM features with StandardScaler normalization.', tech: ['Python', 'Scikit-learn', 'Pandas', 'Streamlit', 'K-Means'], github: 'https://github.com/YoussefSherif218/Retail-Pulse-AI-Strategic-Customer-Intelligence' },
-    { title: 'Bank Marketing Analytics', sub: 'Campaign Performance Analysis', year: '2025', desc: 'Analyzed bank marketing campaign data to identify key factors influencing customer subscription to term deposits. Built classification models and generated actionable insights.', tech: ['Python', 'Pandas', 'Scikit-learn', 'Data Visualization'], github: 'https://github.com/YoussefSherif218/Bank-Marketing-Analytics' },
-    { title: 'NeuroScope Core', sub: 'Visual Neural Network Builder', year: '2026', desc: 'Data & research lead for a 3D visual ML model builder. Authored the BRD/PRD, defined user personas, and structured 30+ functional requirements to bridge the gap in deep learning education.', tech: ['Requirements Engineering', 'BRD/PRD', 'User Personas', 'Stakeholder Analysis'], github: 'https://github.com/hazemelerefey/neuroscope' },
-    { title: 'NeuroScope Landing', sub: 'Marketing & Conversion Analytics', year: '2026', desc: 'Led research and analysis for the NeuroScope marketing site. Conducted competitive gap analysis against TensorBoard and structured the 3D scroll-driven conversion funnel and information architecture.', tech: ['Competitive Analysis', 'User Journey Mapping', 'Market Positioning'], github: 'https://github.com/hazemelerefey/neuroscope' },
+    {
+      id: 'plate-1',
+      num: 'I.',
+      title: 'RetailPulse AI',
+      subtitle: 'Customer Segmentation Engine',
+      desc: 'Built an end-to-end ML pipeline on the UCI Online Retail II dataset (~1M rows) to segment customers into 4 actionable business archetypes using K-Means clustering.',
+      tech: ['Python', 'Scikit-learn', 'Pandas', 'Streamlit', 'K-Means'],
+      github: 'https://github.com/YoussefSherif218/Retail-Pulse-AI-Strategic-Customer-Intelligence',
+      image: '/projects/retailpulse.jpg',
+    },
+    {
+      id: 'plate-2',
+      num: 'II.',
+      title: 'Corelytics',
+      subtitle: 'Body Performance Classification',
+      desc: 'End-to-end ML project on the Kaggle Body Performance dataset (13,393 records). Best model: XGBoost with 89% accuracy on binary classification.',
+      tech: ['Python', 'XGBoost', 'Scikit-learn', 'Pandas', 'SHAP'],
+      github: 'https://github.com/YoussefSherif218/Corelytics-Body.Performance',
+      image: '/projects/corelytics.jpg',
+    },
+    {
+      id: 'plate-3',
+      num: 'III.',
+      title: 'Transportation & Logistics',
+      subtitle: 'GPS Shipment Analytics',
+      desc: 'Two-part data project covering EDA, Random Forest delay prediction (88.9% accuracy), and SQL database design with 11 tables.',
+      tech: ['Python', 'SQL Server', 'Random Forest', 'Pandas'],
+      github: 'https://github.com/YoussefSherif218/Transportation_and_Logistics_Tracking',
+      image: '/projects/logistics.jpg',
+    },
+    {
+      id: 'plate-4',
+      num: 'IV.',
+      title: 'Retail SQL Lab',
+      subtitle: 'Database Design & Analytics',
+      desc: 'Designed and queried a retail database with complex SQL joins, aggregations, and stored procedures for business intelligence reporting.',
+      tech: ['SQL Server', 'T-SQL', 'Data Modeling', 'Star Schema'],
+      github: 'https://github.com/YoussefSherif218/Retail-SQL-Lab',
+      image: '/projects/sqlab.jpg',
+    },
+    {
+      id: 'plate-5',
+      num: 'V.',
+      title: 'Bank Marketing Analytics',
+      subtitle: 'Predictive Campaign Modeling',
+      desc: 'Analyzed bank marketing campaign data to predict term deposit subscriptions using classification algorithms and feature importance analysis.',
+      tech: ['Python', 'XGBoost', 'Pandas', 'Matplotlib', 'SHAP'],
+      github: 'https://github.com/YoussefSherif218',
+      image: '/projects/bankanalytics.jpg',
+    },
+    {
+      id: 'plate-6',
+      num: 'VI.',
+      title: 'NeuroScope Core',
+      subtitle: 'AI Research Framework',
+      desc: 'Research framework exploring neural network architectures for pattern recognition and anomaly detection in complex datasets.',
+      tech: ['Python', 'TensorFlow', 'NumPy', 'Jupyter'],
+      github: 'https://github.com/YoussefSherif218',
+      image: '/projects/neuroscope.jpg',
+    },
+    {
+      id: 'plate-7',
+      num: 'VII.',
+      title: 'NeuroScope Landing',
+      subtitle: 'AI Product Showcase',
+      desc: 'Landing page for an AI-powered analytics product, featuring modern design and interactive data visualization demos.',
+      tech: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+      github: 'https://github.com/YoussefSherif218',
+      image: '/projects/neuroscopelanding.jpg',
+    },
   ];
 
   return (
     <section id="projects" ref={ref} style={{ padding: '128px 0', borderTop: '1px solid var(--border)' }}>
       <div className="container">
         <div style={{ maxWidth: 1000, margin: '0 auto' }}>
+
+          {/* Section Header */}
           <div className="mb-16" data-gsap="fade-up">
             <p className="section-label mb-4">03 / Projects</p>
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, marginBottom: 20 }}>
-              Featured <span style={{ color: 'var(--accent)' }}>Work</span>
+              Seven projects, <span style={{ color: 'var(--accent)', fontStyle: 'italic' }}>all built, all real.</span>
             </h2>
             <div className="accent-line" />
           </div>
 
-          {/* Bento Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6" data-gsap="fade-up">
-            {projects.map((p, i) => (
-              <a key={i} href={p.github} target="_blank" rel="noopener noreferrer"
-                className="glass-card p-8 group block"
-                style={{ textDecoration: 'none', color: 'inherit' }}>
-                <div className="flex items-center justify-between mb-6">
-                  <span className="section-label">{p.sub}</span>
-                  <span style={{ fontFamily: "'Satoshi', sans-serif", fontSize: 13, color: 'var(--muted)' }}>{p.year}</span>
-                </div>
-                <h3 style={{ fontSize: 24, fontWeight: 700, marginBottom: 16, transition: 'color 0.25s' }} className="group-hover:text-[var(--accent)]">{p.title}</h3>
-                <p style={{ fontSize: 15, lineHeight: 1.7, color: 'var(--muted)', marginBottom: 20 }}>{p.desc}</p>
-                <div className="flex flex-wrap gap-1.5 mb-6">
-                  {p.tech.map((t, j) => (
-                    <span key={j} style={{ display: 'inline-flex', alignItems: 'center', height: 26, padding: '0 10px', background: 'rgba(255,255,255,0.04)', border: '1px solid var(--border)', borderRadius: 6, fontFamily: "'Satoshi', sans-serif", fontSize: 12, color: 'var(--muted)' }}>{t}</span>
-                  ))}
-                </div>
-                <div className="flex items-center gap-2" style={{ color: 'var(--accent)', fontSize: 14, fontWeight: 500 }}>
-                  <ExternalLink size={14} />
-                  <span>View on GitHub</span>
-                  <ArrowRight size={14} className="transition-transform duration-250 group-hover:translate-x-1" />
-                </div>
-              </a>
-            ))}
+          {/* Contents Navigation */}
+          <div className="mb-16" data-gsap="fade-up" style={{
+            borderTop: '1px solid var(--border)',
+            paddingTop: 24,
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 16 }}>
+              <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text)' }}>
+                Contents
+              </span>
+              <span style={{ fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)', fontFamily: "'Satoshi', monospace" }}>
+                Seven Plates
+              </span>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              {projects.map((project, i) => (
+                <a
+                  key={i}
+                  href={`#${project.id}`}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 16,
+                    padding: '16px 0',
+                    borderBottom: '1px solid var(--border)',
+                    textDecoration: 'none',
+                    color: 'inherit',
+                    transition: 'all 0.3s',
+                  }}
+                  className="group"
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.paddingLeft = '8px';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.paddingLeft = '0';
+                  }}
+                >
+                  <span style={{
+                    fontSize: 18,
+                    fontWeight: 600,
+                    fontStyle: 'italic',
+                    color: 'var(--accent)',
+                    fontFamily: "'General Sans', serif",
+                    width: 40,
+                  }}>
+                    {project.num}
+                  </span>
+                  <div style={{ flex: 1, display: 'flex', alignItems: 'baseline', gap: 12 }}>
+                    <span style={{
+                      fontSize: 16,
+                      fontWeight: 700,
+                      color: 'var(--text)',
+                      transition: 'color 0.25s',
+                    }}
+                    className="group-hover:text-[var(--accent)]"
+                    >
+                      {project.title}
+                    </span>
+                    <span style={{
+                      fontSize: 13,
+                      color: 'var(--muted)',
+                      letterSpacing: '0.05em',
+                      textTransform: 'uppercase',
+                    }}>
+                      {project.subtitle}
+                    </span>
+                  </div>
+                  <span style={{
+                    fontSize: 11,
+                    color: 'var(--muted)',
+                    fontFamily: "'Satoshi', monospace",
+                  }}>
+                    P.{String(i + 1).padStart(2, '0')}
+                  </span>
+                </a>
+              ))}
+            </div>
           </div>
 
-          <div className="mt-10" data-gsap="fade-up">
-            <a href="https://github.com/YoussefSherif218" target="_blank" rel="noopener noreferrer" className="btn-secondary">
-              <Github size={16} />
-              View All on GitHub
-              <ArrowRight size={16} />
-            </a>
-          </div>
+          {/* Full-Size Project Cards */}
+          {projects.map((project, i) => (
+            <div
+              key={i}
+              id={project.id}
+              data-gsap="fade-up"
+              style={{
+                marginBottom: 80,
+                scrollMarginTop: 80,
+              }}
+            >
+              {/* Full-width image */}
+              <div style={{
+                borderRadius: 14,
+                overflow: 'hidden',
+                marginBottom: 24,
+                height: 400,
+                background: 'var(--surface)',
+                border: '1px solid var(--border)',
+              }}>
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    transition: 'transform 0.6s',
+                  }}
+                  className="group-hover:scale-105"
+                />
+              </div>
+
+              {/* Project info */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: 40 }}>
+                <div>
+                  <p style={{
+                    fontSize: 11,
+                    letterSpacing: '0.15em',
+                    textTransform: 'uppercase',
+                    color: 'var(--muted)',
+                    marginBottom: 8,
+                    fontFamily: "'Satoshi', monospace",
+                  }}>
+                    Plate {project.num.replace('.', '')} · P.{String(i + 1).padStart(2, '0')}
+                  </p>
+                  <h3 style={{
+                    fontSize: 28,
+                    fontWeight: 700,
+                    color: 'var(--text)',
+                    marginBottom: 8,
+                    fontStyle: 'italic',
+                  }}>
+                    {project.title}
+                  </h3>
+                  <p style={{ fontSize: 14, color: 'var(--accent)', marginBottom: 16 }}>
+                    {project.subtitle}
+                  </p>
+                </div>
+
+                <div>
+                  <p style={{
+                    fontSize: 15,
+                    lineHeight: 1.8,
+                    color: 'var(--muted)',
+                    marginBottom: 20,
+                  }}>
+                    {project.desc}
+                  </p>
+
+                  <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 20 }}>
+                    {project.tech.map((t, j) => (
+                      <span key={j} style={{
+                        fontSize: 10,
+                        padding: '6px 14px',
+                        borderRadius: 999,
+                        border: '1px solid var(--border)',
+                        color: 'var(--muted)',
+                        fontFamily: "'Satoshi', monospace",
+                        letterSpacing: '0.05em',
+                      }}>
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 6,
+                      fontSize: 12,
+                      fontWeight: 600,
+                      color: 'var(--accent)',
+                      textDecoration: 'none',
+                      letterSpacing: '0.05em',
+                      textTransform: 'uppercase',
+                      transition: 'opacity 0.25s',
+                    }}
+                    className="hover:opacity-70"
+                  >
+                    View on GitHub →
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+
         </div>
       </div>
     </section>

@@ -32,7 +32,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section ref={ref} className="relative flex items-center overflow-hidden" style={{ minHeight: '100vh', background: '#020202' }}>
+    <section ref={ref} className="relative flex items-center overflow-hidden" style={{ minHeight: '100vh', background: '#0a0806' }}>
 
       {/* ── 1. Cinematic Portrait Background ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -55,14 +55,14 @@ export default function Hero() {
 
         {/* Ambient Overlays to push the image back and blend it */}
         {/* Dark gradient from the left to ensure text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#020202] via-[#020202]/90 to-transparent w-full lg:w-[55%]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0806] via-[#0a0806]/90 to-transparent w-full lg:w-[55%]" />
 
         {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-[30%] bg-gradient-to-t from-[#020202] to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-[30%] bg-gradient-to-t from-[#0a0806] to-transparent" />
 
         {/* Cinematic light leak/glow on the portrait */}
         <div className="absolute inset-0 mix-blend-screen pointer-events-none" style={{
-          background: 'radial-gradient(ellipse at 80% 40%, rgba(94,158,255,0.15) 0%, transparent 60%)',
+          background: 'radial-gradient(ellipse at 80% 40%, rgba(196,168,130,0.15) 0%, transparent 60%)',
         }} />
       </div>
 
@@ -81,7 +81,7 @@ export default function Hero() {
           }} />
 
           {/* Tag */}
-          <div className="h-stagger inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-accent/20 bg-accent/10 w-fit mb-8 relative z-10 shadow-[0_0_20px_rgba(94,158,255,0.15)]">
+          <div className="h-stagger inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-accent/20 bg-accent/10 w-fit mb-8 relative z-10 shadow-[0_0_20px_rgba(196,168,130,0.15)]">
             <Sparkles size={14} className="text-accent" />
             <span className="text-xs font-bold tracking-[0.15em] uppercase text-accent font-['Satoshi']">
               AI & Data Analytics
@@ -130,7 +130,7 @@ export default function Hero() {
 
           {/* Actions */}
           <div className="h-stagger flex flex-wrap gap-4 relative z-10">
-            <a href="#projects" className="btn-primary group relative overflow-hidden h-[54px] px-8 rounded-xl shadow-[0_10px_30px_rgba(94,158,255,0.2)]">
+            <a href="#projects" className="btn-primary group relative overflow-hidden h-[54px] px-8 rounded-xl shadow-[0_10px_30px_rgba(196,168,130,0.2)]">
               <span className="relative z-10 flex items-center gap-2 text-[15px] font-bold">
                 Explore Work
                 <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
