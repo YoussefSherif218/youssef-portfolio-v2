@@ -1006,11 +1006,71 @@
     font-size: clamp(2rem, 6vw, 3rem) !important;
   }
 
+  /* Skills section header */
+  #skills h2 {
+    font-size: clamp(2rem, 8vw, 3rem) !important;
+  }
+
+  /* Certifications section header */
+  #certifications h2 {
+    font-size: clamp(2rem, 8vw, 3rem) !important;
+  }
+
+  /* Credentials section header */
+  #credentials h2 {
+    font-size: clamp(2rem, 8vw, 3rem) !important;
+  }
+
+  /* Experience section header */
+  .experience-section h2 {
+    font-size: clamp(2rem, 8vw, 3rem) !important;
+  }
+
   /* Contact header */
   .contact-header {
     flex-direction: column !important;
     gap: 12px !important;
     align-items: flex-start !important;
+  }
+
+  /* About section */
+  #about blockquote p {
+    font-size: 22px !important;
+  }
+  #about .glass-card {
+    padding: 20px !important;
+  }
+  #about .glass-card h4 {
+    font-size: 16px !important;
+  }
+
+  /* Hero: ensure title doesn't overflow */
+  .h-glass-panel h1 {
+    font-size: clamp(2rem, 10vw, 3.5rem) !important;
+  }
+
+  /* Hero stats grid: 2 columns on mobile */
+  .h-glass-panel .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .h-glass-panel .grid > div:last-child {
+    grid-column: span 2;
+  }
+
+  /* Contact inputs: full width */
+  .contact-form-grid input,
+  .contact-form-grid textarea,
+  .contact-form-grid select {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  /* Footer: reduce text sizes */
+  footer p {
+    font-size: 14px !important;
+  }
+  footer a {
+    font-size: 14px !important;
   }
 }
 
@@ -1022,6 +1082,18 @@
     padding: 20px 16px !important;
   }
 
+  /* Hero: stack buttons */
+  .h-glass-panel .h-stagger.flex.flex-wrap {
+    flex-direction: column !important;
+  }
+  .h-glass-panel .h-stagger.flex.flex-wrap a {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 14px 20px !important;
+    font-size: 15px !important;
+  }
+
+  /* Skills */
   .skill-card {
     padding: 24px 16px !important;
   }
@@ -1033,5 +1105,19 @@
   .skill-card span {
     padding: 8px 14px !important;
     font-size: 13px !important;
+  }
+
+  /* Section headers: smaller on small mobile */
+  .section-label {
+    font-size: 12px !important;
+  }
+
+  /* Credentials: stack buttons */
+  .credentials-info div[style*="display: flex"][style*="gap"] {
+    flex-direction: column !important;
+  }
+  .credentials-info a {
+    width: 100% !important;
+    justify-content: center !important;
   }
 }
