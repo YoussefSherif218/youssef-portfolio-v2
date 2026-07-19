@@ -13,11 +13,11 @@ export default function About() {
   return (
     <section id="about" ref={ref} style={{ padding: '128px 0', borderTop: '1px solid var(--border)' }}>
       <div className="container">
-        <div style={{ maxWidth: 1000, margin: '0 auto' }}>
+        <div style={{ maxWidth: 1400, margin: '0 auto' }}>
           {/* Header */}
           <div className="mb-16" data-gsap="fade-up">
             <p className="section-label mb-4">01 / About</p>
-            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, marginBottom: 20 }}>
+            <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.8rem)', fontWeight: 700, marginBottom: 20 }}>
               From Biotech <span style={{ color: 'var(--accent)' }}>to Data</span>
             </h2>
             <div className="accent-line" />
@@ -32,19 +32,19 @@ export default function About() {
                 paddingLeft: 24,
                 marginBottom: 24,
               }}>
-                <p style={{ fontFamily: "'General Sans', sans-serif", fontSize: 22, fontWeight: 600, lineHeight: 1.5, color: 'var(--text)', fontStyle: 'italic' }}>
+                <p style={{ fontFamily: "'General Sans', sans-serif", fontSize: 26, fontWeight: 600, lineHeight: 1.5, color: 'var(--text)', fontStyle: 'italic' }}>
                   "Understanding not just the numbers, but the business context behind them."
                 </p>
               </blockquote>
-              <p style={{ fontSize: 16, lineHeight: 1.8, color: 'var(--muted)' }}>
+              <p style={{ fontSize: 18, lineHeight: 1.8, color: 'var(--muted)' }}>
                 Junior Data Analyst with a Biotechnology degree from Cairo University, pivoting into data analytics through the Digilians Initiative — a 9-month scholarship by Egypt's Ministry of Communications.
               </p>
             </div>
             <div className="lg:col-span-7 space-y-5">
-              <p style={{ fontSize: 16, lineHeight: 1.8, color: 'var(--muted)' }}>
+              <p style={{ fontSize: 18, lineHeight: 1.8, color: 'var(--muted)' }}>
                 With hands-on experience in both data analysis and digital marketing, I bring a unique perspective to every project. I've managed social media accounts across multiple agencies, analyzed campaign performance, and built data-driven strategies that improved engagement.
               </p>
-              <p style={{ fontSize: 16, lineHeight: 1.8, color: 'var(--muted)' }}>
+              <p style={{ fontSize: 18, lineHeight: 1.8, color: 'var(--muted)' }}>
                 Currently focused on Python, SQL, machine learning, and data visualization tools like Tableau and Power BI — working toward becoming a full-stack data professional.
               </p>
             </div>
@@ -55,8 +55,8 @@ export default function About() {
             {expertise.map((x) => (
               <div key={x.n} className="glass-card p-6 group">
                 <span style={{ fontFamily: "'Satoshi', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', color: 'var(--accent)', display: 'block', marginBottom: 20 }}>{x.n}</span>
-                <h4 style={{ fontSize: 16, fontWeight: 600, marginBottom: 10, transition: 'color 0.25s' }} className="group-hover:text-[var(--accent)]">{x.t}</h4>
-                <p style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--muted)' }}>{x.d}</p>
+                <h4 style={{ fontSize: 18, fontWeight: 600, marginBottom: 10, transition: 'color 0.25s' }} className="group-hover:text-[var(--accent)]">{x.t}</h4>
+                <p style={{ fontSize: 16, lineHeight: 1.6, color: 'var(--muted)' }}>{x.d}</p>
               </div>
             ))}
           </div>

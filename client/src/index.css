@@ -13,15 +13,15 @@
   --color-card: var(--surface);
   --color-card-foreground: var(--text);
   --color-primary: var(--accent);
-  --color-primary-foreground: #0a0806;
+  --color-primary-foreground: var(--bg);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted);
   --color-border: var(--border);
   --color-ring: var(--accent);
   --color-accent: var(--accent);
-  --color-accent-foreground: #0a0806;
+  --color-accent-foreground: var(--bg);
   --color-bg-surface: var(--surface);
-  --color-bg-hero: #0a0806;
+  --color-bg-hero: var(--bg);
   --color-text-primary: var(--text);
   --color-text-secondary: var(--muted);
   --color-text-tertiary: #555555;
@@ -51,9 +51,240 @@
   --radius: 18px;
   --glow: 0 0 80px rgba(196,168,130,0.15);
   --card-shadow: 0 20px 80px rgba(0,0,0,0.40);
-  --glass-bg: rgba(255,255,255,0.02);
-  --glass-border: rgba(255,255,255,0.06);
+  --glass-bg: linear-gradient(160deg, #1a1612 0%, #131110 40%, #1a1612 70%, #131110 100%);
+  --glass-border: rgba(196,168,130,0.15);
   --glass-blur: 20px;
+}
+
+/* ============================================================================
+   LIGHT THEME
+   ============================================================================ */
+:root:not(.dark) {
+  --bg: #f0ece6;
+  --surface: #ffffff;
+  --text: #1a1612;
+  --muted: #7a7570;
+  --accent: #a08060;
+  --accent-hover: #8a6a50;
+  --border: rgba(0,0,0,0.08);
+  --glow: 0 0 80px rgba(160,128,96,0.1);
+  --card-shadow: 0 8px 40px rgba(0,0,0,0.08);
+  --glass-bg: linear-gradient(160deg, #ffffff 0%, #f5f3f0 40%, #ffffff 70%, #f5f3f0 100%);
+  --glass-border: rgba(0,0,0,0.1);
+  --glass-blur: 20px;
+  --section-gradient: linear-gradient(180deg, #f0ece6 0%, #e8e2da 50%, #f0ece6 100%);
+  --card-gradient: linear-gradient(160deg, #ffffff 0%, #f5f2ed 40%, #ffffff 70%, #f5f2ed 100%);
+}
+
+:root:not(.dark) html {
+  background: #f0ece6;
+}
+
+:root:not(.dark) body {
+  color: #1a1612;
+}
+
+/* Glass card light mode */
+:root:not(.dark) .glass-card {
+  background: var(--card-gradient);
+  border-color: rgba(0,0,0,0.1);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.06);
+}
+
+:root:not(.dark) .glass-card:hover {
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1), 0 0 30px rgba(160,128,96,0.06);
+  border-color: rgba(0,0,0,0.15);
+}
+
+:root:not(.dark) .btn-primary {
+  color: #ffffff;
+}
+
+:root:not(.dark) .btn-secondary {
+  color: #1a1612;
+  border-color: rgba(0,0,0,0.15);
+}
+
+:root:not(.dark) .btn-secondary:hover {
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.25);
+}
+
+:root:not(.dark) ::selection {
+  background: #a08060;
+  color: #ffffff;
+}
+
+:root:not(.dark) ::-webkit-scrollbar-track {
+  background: #e8e2da;
+}
+
+:root:not(.dark) ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border: 2px solid #e8e2da;
+}
+
+:root:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Hide starfield and galaxy in light mode */
+:root:not(.dark) .global-stars,
+:root:not(.dark) .global-stars::after,
+:root:not(.dark) .galaxy-bg,
+:root:not(.dark) .galaxy-bg::after,
+:root:not(.dark) .galaxy-dust {
+  opacity: 0;
+}
+
+/* Light noise overlay */
+:root:not(.dark) body::after {
+  opacity: 0.015;
+}
+
+/* ============================================================================
+   LIGHT MODE STARS
+   ============================================================================ */
+.light-stars {
+  display: none;
+}
+
+:root:not(.dark) .light-stars {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image:
+    /* Layer 1 — visible dark gray stars */
+    radial-gradient(2px 2px at 5% 10%, rgba(120,110,100,0.6), transparent),
+    radial-gradient(1.8px 1.8px at 12% 25%, rgba(120,110,100,0.55), transparent),
+    radial-gradient(2px 2px at 20% 45%, rgba(120,110,100,0.6), transparent),
+    radial-gradient(1.5px 1.5px at 28% 15%, rgba(120,110,100,0.5), transparent),
+    radial-gradient(1.8px 1.8px at 35% 65%, rgba(120,110,100,0.55), transparent),
+    radial-gradient(2px 2px at 42% 8%, rgba(120,110,100,0.6), transparent),
+    radial-gradient(1.5px 1.5px at 50% 35%, rgba(120,110,100,0.5), transparent),
+    radial-gradient(1.8px 1.8px at 58% 78%, rgba(120,110,100,0.55), transparent),
+    radial-gradient(2px 2px at 65% 18%, rgba(120,110,100,0.6), transparent),
+    radial-gradient(1.5px 1.5px at 72% 55%, rgba(120,110,100,0.5), transparent),
+    radial-gradient(1.8px 1.8px at 80% 30%, rgba(120,110,100,0.55), transparent),
+    radial-gradient(2px 2px at 88% 70%, rgba(120,110,100,0.6), transparent),
+    radial-gradient(1.5px 1.5px at 95% 45%, rgba(120,110,100,0.5), transparent),
+    /* Layer 2 — medium dots */
+    radial-gradient(1.2px 1.2px at 3% 55%, rgba(100,90,80,0.45), transparent),
+    radial-gradient(1.2px 1.2px at 10% 80%, rgba(100,90,80,0.4), transparent),
+    radial-gradient(1.2px 1.2px at 18% 30%, rgba(100,90,80,0.45), transparent),
+    radial-gradient(1.2px 1.2px at 25% 70%, rgba(100,90,80,0.4), transparent),
+    radial-gradient(1.2px 1.2px at 33% 20%, rgba(100,90,80,0.45), transparent),
+    radial-gradient(1.2px 1.2px at 40% 50%, rgba(100,90,80,0.4), transparent),
+    radial-gradient(1.2px 1.2px at 48% 85%, rgba(100,90,80,0.45), transparent),
+    radial-gradient(1.2px 1.2px at 55% 12%, rgba(100,90,80,0.4), transparent),
+    radial-gradient(1.2px 1.2px at 62% 42%, rgba(100,90,80,0.45), transparent),
+    radial-gradient(1.2px 1.2px at 70% 75%, rgba(100,90,80,0.4), transparent),
+    radial-gradient(1.2px 1.2px at 78% 8%, rgba(100,90,80,0.45), transparent),
+    radial-gradient(1.2px 1.2px at 85% 60%, rgba(100,90,80,0.4), transparent),
+    radial-gradient(1.2px 1.2px at 92% 35%, rgba(100,90,80,0.45), transparent),
+    /* Layer 3 — gold accent stars */
+    radial-gradient(1.5px 1.5px at 8% 40%, rgba(160,128,96,0.5), transparent),
+    radial-gradient(1.2px 1.2px at 22% 60%, rgba(160,128,96,0.4), transparent),
+    radial-gradient(1.5px 1.5px at 38% 25%, rgba(160,128,96,0.5), transparent),
+    radial-gradient(1.2px 1.2px at 52% 50%, rgba(160,128,96,0.4), transparent),
+    radial-gradient(1.5px 1.5px at 68% 15%, rgba(160,128,96,0.5), transparent),
+    radial-gradient(1.2px 1.2px at 82% 45%, rgba(160,128,96,0.4), transparent),
+    radial-gradient(1.5px 1.5px at 95% 70%, rgba(160,128,96,0.5), transparent);
+  animation: light-stars-twinkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes light-stars-twinkle {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.8; }
+}
+
+/* ============================================================================
+   LIGHT MODE — HERO CLOUDS & SUNLIGHT
+   ============================================================================ */
+:root:not(.dark) .hero-clouds {
+  opacity: 1;
+}
+
+:root:not(.dark) .hero-sunlight {
+  opacity: 1;
+}
+
+/* ============================================================================
+   LIGHT MODE — SECTION GRADIENTS
+   ============================================================================ */
+:root:not(.dark) section {
+  background: transparent;
+}
+
+/* About section */
+:root:not(.dark) #about,
+:root:not(.dark) .about-section {
+  background: linear-gradient(180deg, #f0ece6 0%, #e6dfd5 50%, #f0ece6 100%);
+}
+
+/* Experience section */
+:root:not(.dark) .experience-section {
+  background: linear-gradient(180deg, #f0ece6 0%, #ede8e0 50%, #f0ece6 100%);
+}
+
+/* Projects section */
+:root:not(.dark) #projects {
+  background: linear-gradient(180deg, #f0ece6 0%, #e8e2da 50%, #f0ece6 100%);
+}
+
+/* Skills section */
+:root:not(.dark) #skills {
+  background: linear-gradient(180deg, #f0ece6 0%, #e6dfd5 50%, #f0ece6 100%);
+}
+
+/* Credentials section */
+:root:not(.dark) #credentials {
+  background: linear-gradient(180deg, #f0ece6 0%, #ede8e0 50%, #f0ece6 100%);
+}
+
+/* Certifications section */
+:root:not(.dark) #certifications {
+  background: linear-gradient(180deg, #f0ece6 0%, #e8e2da 50%, #f0ece6 100%);
+}
+
+/* Contact section */
+:root:not(.dark) #contact {
+  background: linear-gradient(180deg, #f0ece6 0%, #e6dfd5 50%, #f0ece6 100%);
+}
+
+/* ============================================================================
+   LIGHT MODE — CARD GRADIENTS
+   ============================================================================ */
+:root:not(.dark) [style*="var(--glass-bg)"],
+:root:not(.dark) [style*="var(--card-gradient)"] {
+  background: var(--card-gradient) !important;
+}
+
+/* Experience cards */
+:root:not(.dark) .experience-card {
+  background: var(--card-gradient) !important;
+  border-color: rgba(0,0,0,0.1) !important;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.06) !important;
+}
+
+/* Skill cards */
+:root:not(.dark) [style*="480"] {
+  background: var(--card-gradient) !important;
+}
+
+/* Navigation */
+:root:not(.dark) nav {
+  background: rgba(240,236,230,0.85) !important;
+  border-color: rgba(0,0,0,0.06) !important;
+}
+
+/* Footer */
+:root:not(.dark) footer {
+  background: linear-gradient(180deg, #f0ece6 0%, #e6dfd5 100%) !important;
+  border-color: rgba(0,0,0,0.06) !important;
 }
 
 /* ============================================================================
@@ -73,19 +304,21 @@
 
   html {
     scroll-behavior: smooth;
-    background: #0a0806;
+    background: var(--bg);
+    transition: background-color 0.4s ease;
   }
 
   body {
     background: transparent;
     color: var(--text);
     font-family: 'General Sans', 'Satoshi', 'Inter', -apple-system, sans-serif;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-weight: 400;
     overflow-x: hidden;
+    transition: color 0.4s ease;
   }
 
   h1, h2, h3, h4 {
@@ -124,9 +357,9 @@
 @layer components {
   .container {
     width: 100%;
-    max-width: 1280px;
+    max-width: 1600px;
     margin: 0 auto;
-    padding: 0 48px;
+    padding: 0 64px;
   }
   @media (max-width: 1023px) { .container { padding: 0 24px; } }
   @media (max-width: 767px) { .container { padding: 0 20px; } }
@@ -145,8 +378,8 @@
   }
   .glass-card:hover {
     transform: translateY(-6px);
-    border-color: rgba(255,255,255,0.15);
-    box-shadow: 0 30px 100px rgba(0,0,0,0.5);
+    border-color: rgba(196,168,130,0.3);
+    box-shadow: 0 30px 100px rgba(0,0,0,0.5), 0 0 40px rgba(196,168,130,0.08);
   }
 
   /* Primary Button */
@@ -154,12 +387,12 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    height: 52px;
-    padding: 0 34px;
+    height: 56px;
+    padding: 0 38px;
     background: var(--accent);
-    color: #0a0806;
+    color: var(--bg);
     font-family: 'General Sans', sans-serif;
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 600;
     letter-spacing: -0.01em;
     border: none;
@@ -178,12 +411,12 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    height: 52px;
-    padding: 0 34px;
+    height: 56px;
+    padding: 0 38px;
     background: transparent;
     color: var(--text);
     font-family: 'General Sans', sans-serif;
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 500;
     border: 1px solid rgba(255,255,255,0.15);
     border-radius: 8px;
@@ -200,13 +433,13 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    height: 36px;
-    padding: 0 20px;
+    height: 40px;
+    padding: 0 22px;
     border-radius: 999px;
     border: 1px solid var(--border);
     background: var(--glass-bg);
     font-family: 'Satoshi', sans-serif;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -216,7 +449,7 @@
   /* Section Label */
   .section-label {
     font-family: 'Satoshi', sans-serif;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -462,23 +695,343 @@
   100% { opacity: 0.6; }
 }
 
-/* Timeline mobile: single-column left-aligned */
-@media (max-width: 767px) {
+/* ============================================================================
+   FLOATING CV SIDEBAR
+   ============================================================================ */
+.cv-sidebar {
+  position: fixed;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.cv-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+  color: #fff;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow:
+    0 4px 20px rgba(196, 168, 130, 0.3),
+    0 0 40px rgba(196, 168, 130, 0.1);
+}
+
+.cv-circle::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px dashed var(--accent);
+  opacity: 0.4;
+  animation: cv-spin 12s linear infinite;
+}
+
+.cv-circle::after {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  opacity: 0.15;
+  animation: cv-spin 20s linear infinite reverse;
+}
+
+.cv-circle:hover {
+  transform: scale(1.12);
+  box-shadow:
+    0 8px 35px rgba(196, 168, 130, 0.5),
+    0 0 60px rgba(196, 168, 130, 0.2);
+}
+
+.cv-circle:hover::before {
+  opacity: 0.8;
+  border-color: var(--accent-hover);
+}
+
+.cv-icon {
+  width: 50px;
+  height: 50px;
+}
+
+.cv-ring {
+  animation: cv-ring-pulse 3s ease-in-out infinite;
+}
+
+@keyframes cv-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes cv-ring-pulse {
+  0%, 100% { opacity: 0.5; stroke-dasharray: 4 3; }
+  50% { opacity: 1; stroke-dasharray: 8 2; }
+}
+
+/* Light mode adjustments */
+:root:not(.dark) .cv-circle {
+  background: linear-gradient(135deg, #a08060 0%, #8a6a50 100%);
+  box-shadow:
+    0 4px 20px rgba(160, 128, 96, 0.25),
+    0 0 40px rgba(160, 128, 96, 0.08);
+}
+
+:root:not(.dark) .cv-circle::before {
+  border-color: #a08060;
+}
+
+:root:not(.dark) .cv-circle::after {
+  border-color: #a08060;
+}
+
+:root:not(.dark) .cv-circle:hover {
+  box-shadow:
+    0 8px 35px rgba(160, 128, 96, 0.4),
+    0 0 60px rgba(160, 128, 96, 0.15);
+}
+
+/* Hide on small screens */
+@media (max-width: 768px) {
+  .cv-sidebar {
+    display: none;
+  }
+}
+
+/* ============================================================================
+   RESPONSIVE — TABLET (max-width: 1024px)
+   ============================================================================ */
+@media (max-width: 1024px) {
+  /* Experience: single-column timeline */
   .experience-section .experience-line {
     left: 20px !important;
     transform: none !important;
   }
-
   .experience-section .experience-dot {
     left: 20px !important;
   }
-
   .experience-section .experience-item {
     justify-content: flex-end !important;
   }
-
   .experience-section .experience-card {
     width: calc(100% - 50px) !important;
     margin-left: auto;
+  }
+
+  /* Skills: 2-column grid */
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Credentials: stack to single column */
+  .credentials-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Projects: stack info grid */
+  .project-info-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+  .project-image-wrapper {
+    height: 280px !important;
+  }
+}
+
+/* ============================================================================
+   RESPONSIVE — MOBILE (max-width: 768px)
+   ============================================================================ */
+@media (max-width: 768px) {
+  /* Section padding */
+  section {
+    padding-top: 64px !important;
+    padding-bottom: 64px !important;
+  }
+
+  /* Hero: smaller title */
+  .h-glass-panel h1 {
+    font-size: clamp(2.5rem, 10vw, 4rem) !important;
+  }
+  .h-glass-panel {
+    padding: 24px 20px !important;
+  }
+
+  /* Skills: single column, fluid cards */
+  .skills-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .skill-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 400px !important;
+    padding: 32px 24px !important;
+  }
+  .skill-card h3 {
+    font-size: 28px !important;
+  }
+
+  /* Experience: mobile timeline */
+  .experience-section .experience-line {
+    left: 20px !important;
+    transform: none !important;
+  }
+  .experience-section .experience-dot {
+    left: 20px !important;
+  }
+  .experience-section .experience-item {
+    justify-content: flex-end !important;
+  }
+  .experience-section .experience-card {
+    width: calc(100% - 50px) !important;
+    margin-left: auto;
+    padding: 20px !important;
+  }
+  .experience-year-label {
+    left: 20px !important;
+    transform: none !important;
+  }
+
+  /* Project cards */
+  .project-card {
+    padding: 20px !important;
+    margin-bottom: 40px !important;
+  }
+  .project-image-wrapper {
+    height: 200px !important;
+  }
+  .project-info-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .project-contents-subtitle {
+    display: none !important;
+  }
+
+  /* Contact: stack grids */
+  .contact-form-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .contact-columns {
+    grid-template-columns: 1fr !important;
+  }
+  .contact-wrapper {
+    padding: 28px 20px !important;
+  }
+  .contact-form-inner {
+    padding: 24px 20px !important;
+  }
+  .contact-correspondence-inner {
+    padding: 24px 20px !important;
+  }
+  .contact-form-header {
+    flex-direction: column !important;
+    gap: 8px !important;
+    align-items: flex-start !important;
+  }
+  .contact-correspondence-header {
+    flex-direction: column !important;
+    gap: 8px !important;
+    align-items: flex-start !important;
+  }
+  .contact-label-width {
+    width: 70px !important;
+    font-size: 12px !important;
+  }
+  .contact-value-text {
+    font-size: 16px !important;
+    word-break: break-all !important;
+  }
+
+  /* Freelance buttons: stack */
+  .freelance-buttons {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  .freelance-buttons a {
+    justify-content: center !important;
+    padding: 14px 20px !important;
+    font-size: 15px !important;
+  }
+  .freelance-buttons img {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  /* Action buttons */
+  .contact-actions {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  .contact-actions a,
+  .contact-actions button {
+    justify-content: center !important;
+    padding: 14px 20px !important;
+  }
+
+  /* Credentials */
+  .credentials-grid {
+    grid-template-columns: 1fr !important;
+    min-height: auto !important;
+  }
+  .credentials-info {
+    padding: 28px 20px !important;
+  }
+  .credentials-info h3 {
+    font-size: 24px !important;
+  }
+  .credentials-info h4 {
+    font-size: 18px !important;
+  }
+  .credentials-image {
+    padding: 16px !important;
+  }
+
+  /* Navigation */
+  .nav-container {
+    padding: 0 16px !important;
+  }
+
+  /* Section headers */
+  .section-header-title {
+    font-size: clamp(2rem, 6vw, 3rem) !important;
+  }
+
+  /* Contact header */
+  .contact-header {
+    flex-direction: column !important;
+    gap: 12px !important;
+    align-items: flex-start !important;
+  }
+}
+
+/* ============================================================================
+   RESPONSIVE — SMALL MOBILE (max-width: 480px)
+   ============================================================================ */
+@media (max-width: 480px) {
+  .h-glass-panel {
+    padding: 20px 16px !important;
+  }
+
+  .skill-card {
+    padding: 24px 16px !important;
+  }
+
+  .skill-card h3 {
+    font-size: 26px !important;
+  }
+
+  .skill-card span {
+    padding: 8px 14px !important;
+    font-size: 13px !important;
   }
 }

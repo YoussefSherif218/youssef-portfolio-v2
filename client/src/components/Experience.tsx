@@ -56,10 +56,10 @@ export default function Experience() {
       }}
     >
       <div className="container">
-        <div style={{ maxWidth: 1000, margin: '0 auto' }}>
+        <div style={{ maxWidth: 1400, margin: '0 auto' }}>
           <div className="mb-20" data-gsap="fade-up">
             <p className="section-label mb-4">02 / Experience</p>
-            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, marginBottom: 20 }}>
+            <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.8rem)', fontWeight: 700, marginBottom: 20 }}>
               The <span style={{ color: 'var(--accent)' }}>Journey.</span>
             </h2>
             <div className="accent-line" />
@@ -126,7 +126,7 @@ export default function Experience() {
                   }} />
 
                   {/* Year label on the line */}
-                  <div style={{
+                  <div className="experience-year-label" style={{
                     position: 'absolute',
                     left: '50%',
                     top: -20,
@@ -146,8 +146,8 @@ export default function Experience() {
                     className="experience-card"
                     style={{
                       width: 'calc(50% - 40px)',
-                      background: 'rgba(255,255,255,0.03)',
-                      border: '1px solid var(--border)',
+                      background: 'var(--glass-bg)',
+                      border: '1px solid var(--glass-border)',
                       borderTop: `2px solid var(--accent)`,
                       borderRadius: 14,
                       padding: '28px 28px 24px',
@@ -195,7 +195,7 @@ export default function Experience() {
                       <span style={{ fontSize: 12, color: 'var(--muted)' }}>{item.p}</span>
                     </div>
 
-                    <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--muted)', marginBottom: item.tags.length > 0 ? 16 : 0 }}>
+                    <p style={{ fontSize: 16, lineHeight: 1.7, color: 'var(--muted)', marginBottom: item.tags.length > 0 ? 16 : 0 }}>
                       {item.desc}
                     </p>
 

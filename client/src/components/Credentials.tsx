@@ -10,12 +10,12 @@ export default function Credentials() {
     <>
       <section id="credentials" ref={ref} style={{ padding: '128px 0', borderTop: '1px solid var(--border)' }}>
         <div className="container">
-          <div style={{ maxWidth: 1000, margin: '0 auto' }}>
+          <div style={{ maxWidth: 1400, margin: '0 auto' }}>
 
             {/* Section Header */}
             <div className="mb-16" data-gsap="fade-up">
               <p className="section-label mb-4">05 / Credentials</p>
-              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, marginBottom: 20 }}>
+              <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.8rem)', fontWeight: 700, marginBottom: 20 }}>
                 Professional <span style={{ color: 'var(--accent)', fontStyle: 'italic' }}>Credentials</span>
               </h2>
               <div className="accent-line" />
@@ -43,13 +43,13 @@ export default function Credentials() {
                 e.currentTarget.style.boxShadow = 'none';
               }}
             >
-              <div style={{
+              <div className="credentials-grid" style={{
                 display: 'grid',
                 gridTemplateColumns: '1.2fr 1fr',
                 minHeight: 400,
               }}>
                 {/* Certificate Image */}
-                <div style={{
+                <div className="credentials-image" style={{
                   overflow: 'hidden',
                   display: 'flex',
                   alignItems: 'center',
@@ -73,7 +73,7 @@ export default function Credentials() {
                 </div>
 
                 {/* Certificate Info */}
-                <div style={{
+                <div className="credentials-info" style={{
                   padding: '48px 40px',
                   display: 'flex',
                   flexDirection: 'column',
@@ -123,7 +123,7 @@ export default function Credentials() {
                     Power BI Data Analyst Associate
                   </h4>
                   <p style={{
-                    fontSize: 14,
+                    fontSize: 16,
                     letterSpacing: '0.15em',
                     textTransform: 'uppercase',
                     color: 'var(--muted)',
@@ -134,7 +134,7 @@ export default function Credentials() {
                   </p>
 
                   <p style={{
-                    fontSize: 15,
+                    fontSize: 17,
                     lineHeight: 1.8,
                     color: 'var(--muted)',
                     marginBottom: 32,
@@ -152,11 +152,11 @@ export default function Credentials() {
                         display: 'inline-flex',
                         alignItems: 'center',
                         gap: 6,
-                        padding: '12px 24px',
+                        padding: '14px 28px',
                         background: 'var(--accent)',
                         color: 'var(--bg)',
                         borderRadius: 8,
-                        fontSize: 13,
+                        fontSize: 15,
                         fontWeight: 600,
                         textDecoration: 'none',
                         transition: 'opacity 0.25s',
@@ -197,7 +197,7 @@ export default function Credentials() {
               position: 'absolute',
               top: 24,
               right: 24,
-              background: 'rgba(255,255,255,0.1)',
+              background: 'var(--border)',
               border: 'none',
               borderRadius: '50%',
               width: 48,
@@ -206,11 +206,11 @@ export default function Credentials() {
               alignItems: 'center',
               justifyContent: 'center',
               cursor: 'pointer',
-              color: '#fff',
+              color: 'var(--text)',
               transition: 'background 0.25s',
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.2)'; }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--glass-border)'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = 'var(--border)'; }}
           >
             <X size={24} />
           </button>

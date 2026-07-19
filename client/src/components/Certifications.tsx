@@ -20,10 +20,10 @@ export default function Certifications() {
     <>
       <section id="certifications" ref={ref} style={{ padding: '128px 0', borderTop: '1px solid var(--border)' }}>
         <div className="container">
-          <div style={{ maxWidth: 1000, margin: '0 auto' }}>
+          <div style={{ maxWidth: 1400, margin: '0 auto' }}>
             <div className="mb-16" data-gsap="fade-up">
               <p className="section-label mb-4">06 / Certifications</p>
-              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, marginBottom: 20 }}>
+              <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.8rem)', fontWeight: 700, marginBottom: 20 }}>
                 Professional <span style={{ color: 'var(--accent)' }}>Certifications</span>
               </h2>
               <div className="accent-line" />
@@ -48,7 +48,7 @@ export default function Certifications() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <Award size={16} style={{ color: 'var(--accent)' }} />
-                      <h3 style={{ fontSize: 15, fontWeight: 600, transition: 'color 0.25s' }} className="group-hover:text-[var(--accent)]">
+                      <h3 style={{ fontSize: 17, fontWeight: 600, transition: 'color 0.25s' }} className="group-hover:text-[var(--accent)]">
                         {cert.name}
                       </h3>
                     </div>
@@ -92,7 +92,7 @@ export default function Certifications() {
               position: 'absolute',
               top: 24,
               right: 24,
-              background: 'rgba(255,255,255,0.1)',
+              background: 'var(--border)',
               border: 'none',
               borderRadius: '50%',
               width: 44,
@@ -101,7 +101,7 @@ export default function Certifications() {
               alignItems: 'center',
               justifyContent: 'center',
               cursor: 'pointer',
-              color: '#fff',
+              color: 'var(--text)',
             }}
           >
             <X size={22} />

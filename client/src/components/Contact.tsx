@@ -1,59 +1,427 @@
 import { useGsapSection } from '@/hooks/useGsap';
-import { ArrowRight, Mail, Linkedin, Github } from 'lucide-react';
+import { ArrowRight, Mail, Linkedin, Github, MapPin, Send, Calendar, Copy } from 'lucide-react';
+import { useState } from 'react';
 
 export default function Contact() {
   const ref = useGsapSection<HTMLElement>();
+  const [activeType, setActiveType] = useState('Data Analyst');
+  const [copied, setCopied] = useState(false);
+
+  const types = ['Data Analyst', 'ML Engineer', 'Freelance', 'Other'];
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText('yshreef924@gmail.com');
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
-    <section id="contact" ref={ref} style={{ padding: '128px 0', borderTop: '1px solid var(--border)' }}>
+    <section id="contact" ref={ref} style={{ padding: '128px 0' }}>
       <div className="container">
-        <div style={{ maxWidth: 1000, margin: '0 auto' }}>
-          <div className="mb-16" data-gsap="fade-up">
-            <p className="section-label mb-4">07 / Contact</p>
-            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, marginBottom: 20 }}>
-              Let's Work <span style={{ color: 'var(--accent)' }}>Together</span>
-            </h2>
-            <div className="accent-line" />
-          </div>
+        <div className="contact-wrapper" style={{
+          maxWidth: 1600,
+          margin: '0 auto',
+          background: 'var(--glass-bg)',
+          border: '1px solid var(--glass-border)',
+          borderRadius: 24,
+          padding: '56px 60px',
+          boxShadow: '0 40px 100px rgba(0,0,0,0.5), inset 0 1px 0 rgba(196,168,130,0.1)',
+        }}>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-16 gap-y-12">
-            <div className="lg:col-span-6 space-y-8" data-gsap="fade-up">
-              <p style={{ fontSize: 16, lineHeight: 1.8, color: 'var(--muted)' }}>
-                I'm currently open to data analyst roles, freelance projects, and internship opportunities. Whether you have a specific project in mind or want to discuss analytics and data strategy, feel free to reach out.
+          {/* Section Header with VOL badge */}
+          <div className="mb-16 contact-header" data-gsap="fade-up" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <div>
+              <p className="section-label mb-6" style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                06 <span style={{ width: 40, height: 1, background: 'var(--muted)', display: 'inline-block' }} /> CONTACT & AVAILABILITY
               </p>
-              <a href="mailto:yshreef924@gmail.com" className="btn-primary">
-                <Mail size={16} />
-                Send Me an Email
-                <ArrowRight size={16} />
-              </a>
             </div>
-
-            <div className="lg:col-span-6 space-y-0" data-gsap="fade-up">
-              {[
-                { Icon: Mail, label: 'Email', val: 'yshreef924@gmail.com', href: 'mailto:yshreef924@gmail.com' },
-                { Icon: Linkedin, label: 'LinkedIn', val: 'linkedin.com/in/youssefsherif-', href: 'https://www.linkedin.com/in/youssefsherif-/' },
-                { Icon: Github, label: 'GitHub', val: 'github.com/YoussefSherif218', href: 'https://github.com/YoussefSherif218' },
-              ].map((c, i) => (
-                <a key={i} href={c.href} target={c.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer"
-                  className="group flex items-center gap-5"
-                  style={{ padding: '24px 0', borderBottom: '1px solid var(--border)', textDecoration: 'none' }}>
-                  <c.Icon size={20} style={{ color: 'var(--muted)' }} />
-                  <div>
-                    <p className="section-label mb-1">{c.label}</p>
-                    <p style={{ fontSize: 15, fontWeight: 500, color: 'var(--text)', transition: 'color 0.25s' }} className="group-hover:text-[var(--accent)]">{c.val}</p>
-                  </div>
-                </a>
-              ))}
-            </div>
+            <span style={{
+              fontSize: 10,
+              color: 'var(--muted)',
+              fontFamily: "'Satoshi', monospace",
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              border: '1px solid var(--border)',
+              borderRadius: 999,
+              padding: '8px 16px',
+            }}>
+              VOL. 06 · '26
+            </span>
           </div>
 
-          {/* Availability */}
-          <div className="mt-20 flex items-center gap-4" style={{ padding: '28px 0', borderTop: '1px solid var(--border)' }} data-gsap="fade-up">
-            <div style={{ width: 10, height: 10, borderRadius: 999, background: 'var(--accent-success)', boxShadow: '0 0 12px rgba(34,197,94,0.4)' }} />
-            <p style={{ fontSize: 14, color: 'var(--muted)' }}>
-              <span style={{ color: 'var(--accent-success)', fontWeight: 600 }}>Available</span> — Currently advancing through the Digilians AI scholarship while seeking data analyst positions.
+          {/* Big Heading */}
+          <div className="mb-12" data-gsap="fade-up">
+            <h2 style={{
+              fontSize: 'clamp(3rem, 7vw, 6rem)',
+              fontWeight: 700,
+              lineHeight: 1.05,
+              marginBottom: 0,
+            }}>
+              Let's build<br />
+              <span style={{ fontStyle: 'italic', color: 'var(--accent)' }}>something great.</span>
+            </h2>
+          </div>
+
+          {/* Subtitle */}
+          <div className="mb-20" data-gsap="fade-up">
+            <p style={{ fontSize: 19, lineHeight: 1.7, color: 'var(--muted)', maxWidth: 700 }}>
+              Open to <strong style={{ color: 'var(--text)' }}>data analytics</strong> and <strong style={{ color: 'var(--text)' }}>AI engineering</strong> roles.
+              Based in <strong style={{ color: 'var(--text)' }}>Egypt</strong>, open to freelance.
             </p>
           </div>
+
+          {/* Two Column Layout */}
+          <div className="contact-columns" style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 20 }} data-gsap="fade-up">
+
+            {/* Left: Contact Form */}
+            <div className="contact-form-inner" style={{
+              background: 'var(--glass-bg)',
+              border: '1px solid var(--glass-border)',
+              borderRadius: 16,
+              padding: '32px 36px',
+            }}>
+              {/* Form Header */}
+              <div className="contact-form-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
+                <span style={{
+                  fontSize: 15,
+                  color: 'var(--accent)',
+                  fontFamily: "'Satoshi', monospace",
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 8,
+                }}>
+                  <Send size={16} /> SEND A NOTE
+                </span>
+                <span style={{
+                  fontSize: 14,
+                  color: 'var(--accent)',
+                  fontFamily: "'Satoshi', monospace",
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                }}>
+                  DIRECT SUBMISSION
+                </span>
+              </div>
+
+              {/* Type Pills */}
+              <div style={{ display: 'flex', gap: 8, marginBottom: 24, flexWrap: 'wrap' }}>
+                {types.map(t => (
+                  <button
+                    key={t}
+                    onClick={() => setActiveType(t)}
+                    style={{
+                      fontSize: 15,
+                      padding: '12px 26px',
+                      borderRadius: 999,
+                      border: `1px solid ${activeType === t ? 'var(--accent)' : 'var(--border)'}`,
+                      background: activeType === t ? 'rgba(196,168,130,0.1)' : 'transparent',
+                      color: activeType === t ? 'var(--accent)' : 'var(--muted)',
+                      fontFamily: "'Satoshi', monospace",
+                      letterSpacing: '0.05em',
+                      textTransform: 'uppercase',
+                      cursor: 'pointer',
+                      transition: 'all 0.25s',
+                    }}
+                  >
+                    {t}
+                  </button>
+                ))}
+              </div>
+
+              {/* Name & Email */}
+              <div className="contact-form-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+                <div>
+                  <label style={{
+                    fontSize: 14,
+                    color: 'var(--accent)',
+                    fontFamily: "'Satoshi', monospace",
+                    letterSpacing: '0.1em',
+                    textTransform: 'uppercase',
+                    display: 'block',
+                    marginBottom: 8,
+                  }}>NAME</label>
+                  <input type="text" placeholder="" style={{
+                    width: '100%',
+                    padding: '18px 20px',
+                    background: 'var(--bg)',
+                    border: '1px solid var(--border)',
+                    borderRadius: 8,
+                    color: 'var(--text)',
+                    fontSize: 18,
+                    fontFamily: "'Satoshi', sans-serif",
+                    outline: 'none',
+                    transition: 'border-color 0.25s',
+                  }}
+                    onFocus={(e) => e.currentTarget.style.borderColor = 'rgba(196,168,130,0.4)'}
+                    onBlur={(e) => e.currentTarget.style.borderColor = 'var(--border)'}
+                  />
+                </div>
+                <div>
+                  <label style={{
+                    fontSize: 14,
+                    color: 'var(--accent)',
+                    fontFamily: "'Satoshi', monospace",
+                    letterSpacing: '0.1em',
+                    textTransform: 'uppercase',
+                    display: 'block',
+                    marginBottom: 8,
+                  }}>EMAIL</label>
+                  <input type="email" placeholder="" style={{
+                    width: '100%',
+                    padding: '18px 20px',
+                    background: 'var(--bg)',
+                    border: '1px solid var(--border)',
+                    borderRadius: 8,
+                    color: 'var(--text)',
+                    fontSize: 18,
+                    fontFamily: "'Satoshi', sans-serif",
+                    outline: 'none',
+                    transition: 'border-color 0.25s',
+                  }}
+                    onFocus={(e) => e.currentTarget.style.borderColor = 'rgba(196,168,130,0.4)'}
+                    onBlur={(e) => e.currentTarget.style.borderColor = 'var(--border)'}
+                  />
+                </div>
+              </div>
+
+              {/* Note */}
+              <div style={{ marginBottom: 24 }}>
+                <label style={{
+                  fontSize: 14,
+                  color: 'var(--accent)',
+                  fontFamily: "'Satoshi', monospace",
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  display: 'block',
+                  marginBottom: 8,
+                }}>NOTE</label>
+                <textarea
+                  rows={4}
+                  placeholder="Tell me about the role, project, or what you'd like me to analyze."
+                  style={{
+                    width: '100%',
+                    padding: '16px 18px',
+                    background: 'var(--bg)',
+                    border: '1px solid var(--border)',
+                    borderRadius: 8,
+                    color: 'var(--text)',
+                    fontSize: 16,
+                    fontFamily: "'Satoshi', sans-serif",
+                    outline: 'none',
+                    resize: 'vertical',
+                    transition: 'border-color 0.25s',
+                  }}
+                  onFocus={(e) => e.currentTarget.style.borderColor = 'rgba(196,168,130,0.4)'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = 'var(--border)'}
+                />
+              </div>
+
+              {/* Action Buttons */}
+              <div className="contact-actions" style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+                <a href="mailto:yshreef924@gmail.com" style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  padding: '18px 36px',
+                  borderRadius: 999,
+                  border: '1px solid var(--accent)',
+                  background: 'var(--accent)',
+                  color: 'var(--bg)',
+                  fontSize: 15,
+                  fontWeight: 600,
+                  fontFamily: "'Satoshi', monospace",
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  textDecoration: 'none',
+                  transition: 'all 0.25s',
+                }}>
+                  SEND MESSAGE <ArrowRight size={16} />
+                </a>
+                <button style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  padding: '18px 32px',
+                  borderRadius: 999,
+                  border: '1px solid var(--border)',
+                  background: 'transparent',
+                  color: 'var(--muted)',
+                  fontSize: 15,
+                  fontWeight: 500,
+                  fontFamily: "'Satoshi', monospace",
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  cursor: 'pointer',
+                  transition: 'all 0.25s',
+                }}>
+                  BOOK A CALL <Calendar size={16} />
+                </button>
+                <button onClick={copyEmail} style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  padding: '18px 32px',
+                  borderRadius: 999,
+                  border: 'none',
+                  background: 'transparent',
+                  color: 'var(--muted)',
+                  fontSize: 15,
+                  fontWeight: 500,
+                  fontFamily: "'Satoshi', monospace",
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  cursor: 'pointer',
+                  transition: 'all 0.25s',
+                }}>
+                  {copied ? 'COPIED!' : 'COPY EMAIL'} <Copy size={13} />
+                </button>
+              </div>
+            </div>
+
+            {/* Right: Correspondence */}
+            <div className="contact-correspondence-inner" style={{
+              background: 'var(--glass-bg)',
+              border: '1px solid var(--glass-border)',
+              borderRadius: 16,
+              padding: '32px 36px',
+            }}>
+              {/* Header */}
+              <div className="contact-correspondence-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
+                <span style={{
+                  fontSize: 15,
+                  color: 'var(--accent)',
+                  fontFamily: "'Satoshi', monospace",
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 8,
+                }}>
+                  <Mail size={16} /> CORRESPONDENCE
+                </span>
+                <span style={{
+                  fontSize: 14,
+                  color: 'var(--accent)',
+                  fontFamily: "'Satoshi', monospace",
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                }}>
+                  SEVEN CHANNELS
+                </span>
+              </div>
+
+              {/* Contact Rows */}
+              {[
+                { label: 'EMAIL', value: 'yshreef924@gmail.com', href: 'mailto:yshreef924@gmail.com', icon: <Mail size={16} />, external: false },
+                { label: 'LINKEDIN', value: 'linkedin.com/in/youssefsherif-', href: 'https://www.linkedin.com/in/youssefsherif-/', icon: <Linkedin size={16} />, external: true },
+                { label: 'GITHUB', value: 'github.com/YoussefSherif218', href: 'https://github.com/YoussefSherif218', icon: <Github size={16} />, external: true },
+                { label: 'LOCATED', value: 'Egypt', href: undefined, icon: <MapPin size={16} />, external: false },
+              ].map((c, i) => (
+                <a
+                  key={i}
+                  href={c.href}
+                  target={c.external ? '_blank' : undefined}
+                  rel={c.external ? 'noopener noreferrer' : undefined}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    padding: '22px 0',
+                    borderBottom: i < 3 ? '1px solid var(--border)' : 'none',
+                    textDecoration: 'none',
+                    transition: 'all 0.25s',
+                  }}
+                  className="group"
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                    <span className="contact-label-width" style={{
+                      fontSize: 14,
+                      color: 'var(--accent)',
+                      fontFamily: "'Satoshi', monospace",
+                      letterSpacing: '0.1em',
+                      textTransform: 'uppercase',
+                      width: 100,
+                    }}>{c.label}</span>
+                    <span style={{
+                      fontSize: 19,
+                      fontWeight: 500,
+                      color: 'var(--text)',
+                      transition: 'color 0.25s',
+                    }}
+                      className="group-hover:text-[var(--accent)] contact-value-text"
+                    >{c.value}</span>
+                  </div>
+                  {c.href && (
+                    <ArrowRight size={16} style={{ color: 'var(--muted)', transition: 'color 0.25s, transform 0.25s' }}
+                      className="group-hover:text-[var(--accent)] group-hover:translate-x-1"
+                    />
+                  )}
+                </a>
+              ))}
+
+              {/* Freelance Platforms */}
+              <div style={{ marginTop: 28, paddingTop: 24, borderTop: '1px solid var(--border)' }}>
+                <span style={{
+                  fontSize: 15,
+                  color: 'var(--accent)',
+                  fontFamily: "'Satoshi', monospace",
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  display: 'block',
+                  marginBottom: 20,
+                  textAlign: 'center',
+                }}>FREELANCE PLATFORMS</span>
+                <div className="freelance-buttons" style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
+                  {[
+                    { name: 'Mostaql', href: 'https://mostaql.com/u/Youssef_Shreef', logo: '/mostaql.png', color: '#28a745' },
+                    { name: 'Khamsat', href: 'https://khamsat.com/user/youssef_shreef', logo: '/khamsat.jpg', color: '#f5a623' },
+                    { name: 'Upwork', href: 'https://www.upwork.com/freelancers/~01266897d69dfba63e', logo: '/upwork.png', color: '#14a800' },
+                  ].map((p, i) => (
+                    <a
+                      key={i}
+                      href={p.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 12,
+                        padding: '18px 32px',
+                        borderRadius: 999,
+                        border: '1px solid var(--border)',
+                        background: 'transparent',
+                        color: 'var(--text)',
+                        fontSize: 18,
+                        fontWeight: 600,
+                        fontFamily: "'Satoshi', sans-serif",
+                        textDecoration: 'none',
+                        transition: 'all 0.25s',
+                      }}
+                      className="group"
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = p.color;
+                        e.currentTarget.style.background = `${p.color}15`;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = 'var(--border)';
+                        e.currentTarget.style.background = 'transparent';
+                      }}
+                    >
+                      <img src={p.logo} alt={p.name} style={{ width: 40, height: 40, borderRadius: 6, objectFit: 'contain' }} />
+                      {p.name}
+                      <ArrowRight size={14} style={{ color: 'var(--muted)', transition: 'transform 0.25s' }}
+                        className="group-hover:translate-x-1"
+                      />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+          </div>
+
         </div>
       </div>
     </section>

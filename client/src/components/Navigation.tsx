@@ -25,32 +25,32 @@ export default function Navigation() {
     <nav
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
       style={{
-        height: 72,
-        background: scrolled ? 'rgba(10,8,6,0.8)' : 'transparent',
+        height: 76,
+        background: scrolled ? 'var(--glass-bg)' : 'transparent',
         backdropFilter: scrolled ? 'blur(20px)' : 'none',
         borderBottom: scrolled ? '1px solid var(--border)' : '1px solid transparent',
       }}
     >
       <div className="container h-full flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2" style={{ fontFamily: "'General Sans', sans-serif", fontWeight: 700, fontSize: 18, color: 'var(--text)', textDecoration: 'none' }}>
+        <a href="#" className="flex items-center gap-2" style={{ fontFamily: "'General Sans', sans-serif", fontWeight: 700, fontSize: 20, color: 'var(--text)', textDecoration: 'none' }}>
           <span style={{ color: 'var(--accent)' }}>Y</span>S
         </a>
 
-        <div className="hidden md:flex items-center gap-12">
+        <div className="hidden md:flex items-center gap-14">
           {links.map((l) => (
             <a
               key={l.label}
               href={l.href}
               style={{
                 fontFamily: "'Satoshi', sans-serif",
-                fontSize: 14,
+                fontSize: 16,
                 fontWeight: 500,
                 color: 'var(--muted)',
                 textDecoration: 'none',
                 letterSpacing: '0.02em',
                 transition: 'color 0.25s',
               }}
-              className="hover:text-white"
+              className="hover:text-[var(--text)]"
             >
               {l.label}
             </a>
@@ -70,7 +70,7 @@ export default function Navigation() {
         <div
           className="md:hidden"
           style={{
-            background: 'rgba(10,8,6,0.95)',
+            background: 'var(--glass-bg)',
             backdropFilter: 'blur(20px)',
             borderTop: '1px solid var(--border)',
             padding: '24px 20px',
@@ -85,11 +85,11 @@ export default function Navigation() {
                 display: 'block',
                 padding: '14px 0',
                 fontFamily: "'Satoshi', sans-serif",
-                fontSize: 16,
+                fontSize: 18,
                 fontWeight: 500,
                 color: 'var(--muted)',
                 textDecoration: 'none',
-                borderBottom: '1px solid rgba(255,255,255,0.05)',
+                borderBottom: '1px solid var(--border)',
               }}
             >
               {l.label}

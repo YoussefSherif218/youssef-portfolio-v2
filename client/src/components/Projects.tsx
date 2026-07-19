@@ -61,8 +61,8 @@ export default function Projects() {
       subtitle: 'AI Research Framework',
       desc: 'Research framework exploring neural network architectures for pattern recognition and anomaly detection in complex datasets.',
       tech: ['Python', 'TensorFlow', 'NumPy', 'Jupyter'],
-      github: 'https://github.com/YoussefSherif218',
-      image: '/projects/neuroscope.jpg',
+      github: 'https://github.com/YoussefSherif218/NeuroScope-Core',
+      image: '/projects/neuroscope-core-logo.png',
     },
     {
       id: 'plate-7',
@@ -79,12 +79,12 @@ export default function Projects() {
   return (
     <section id="projects" ref={ref} style={{ padding: '128px 0', borderTop: '1px solid var(--border)' }}>
       <div className="container">
-        <div style={{ maxWidth: 1000, margin: '0 auto' }}>
+        <div style={{ maxWidth: 1400, margin: '0 auto' }}>
 
           {/* Section Header */}
           <div className="mb-16" data-gsap="fade-up">
             <p className="section-label mb-4">03 / Projects</p>
-            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, marginBottom: 20 }}>
+            <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.8rem)', fontWeight: 700, marginBottom: 20 }}>
               Seven projects, <span style={{ color: 'var(--accent)', fontStyle: 'italic' }}>all built, all real.</span>
             </h2>
             <div className="accent-line" />
@@ -96,10 +96,10 @@ export default function Projects() {
             paddingTop: 24,
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 16 }}>
-              <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text)' }}>
+              <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text)' }}>
                 Contents
               </span>
-              <span style={{ fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)', fontFamily: "'Satoshi', monospace" }}>
+              <span style={{ fontSize: 13, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)', fontFamily: "'Satoshi', monospace" }}>
                 Seven Plates
               </span>
             </div>
@@ -139,7 +139,7 @@ export default function Projects() {
                   </span>
                   <div style={{ flex: 1, display: 'flex', alignItems: 'baseline', gap: 12 }}>
                     <span style={{
-                      fontSize: 16,
+                      fontSize: 18,
                       fontWeight: 700,
                       color: 'var(--text)',
                       transition: 'color 0.25s',
@@ -148,8 +148,8 @@ export default function Projects() {
                     >
                       {project.title}
                     </span>
-                    <span style={{
-                      fontSize: 13,
+                    <span className="project-contents-subtitle" style={{
+                      fontSize: 15,
                       color: 'var(--muted)',
                       letterSpacing: '0.05em',
                       textTransform: 'uppercase',
@@ -158,7 +158,7 @@ export default function Projects() {
                     </span>
                   </div>
                   <span style={{
-                    fontSize: 11,
+                    fontSize: 13,
                     color: 'var(--muted)',
                     fontFamily: "'Satoshi', monospace",
                   }}>
@@ -175,19 +175,24 @@ export default function Projects() {
               key={i}
               id={project.id}
               data-gsap="fade-up"
+              className="project-card"
               style={{
                 marginBottom: 80,
                 scrollMarginTop: 80,
+                background: 'var(--glass-bg)',
+                border: '1px solid var(--glass-border)',
+                borderRadius: 20,
+                padding: '32px 36px',
+                boxShadow: '0 30px 80px rgba(0,0,0,0.4)',
               }}
             >
               {/* Full-width image */}
-              <div style={{
+              <div className="project-image-wrapper" style={{
                 borderRadius: 14,
                 overflow: 'hidden',
-                marginBottom: 24,
+                marginBottom: 28,
                 height: 400,
-                background: 'var(--surface)',
-                border: '1px solid var(--border)',
+                background: 'var(--bg)',
               }}>
                 <img
                   src={project.image}
@@ -203,13 +208,13 @@ export default function Projects() {
               </div>
 
               {/* Project info */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: 40 }}>
+              <div className="project-info-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: 40 }}>
                 <div>
                   <p style={{
                     fontSize: 11,
                     letterSpacing: '0.15em',
                     textTransform: 'uppercase',
-                    color: 'var(--muted)',
+                    color: 'var(--accent)',
                     marginBottom: 8,
                     fontFamily: "'Satoshi', monospace",
                   }}>
@@ -224,14 +229,14 @@ export default function Projects() {
                   }}>
                     {project.title}
                   </h3>
-                  <p style={{ fontSize: 14, color: 'var(--accent)', marginBottom: 16 }}>
+                  <p style={{ fontSize: 16, color: 'var(--accent)', marginBottom: 16 }}>
                     {project.subtitle}
                   </p>
                 </div>
 
                 <div>
                   <p style={{
-                    fontSize: 15,
+                    fontSize: 17,
                     lineHeight: 1.8,
                     color: 'var(--muted)',
                     marginBottom: 20,
@@ -242,10 +247,10 @@ export default function Projects() {
                   <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 20 }}>
                     {project.tech.map((t, j) => (
                       <span key={j} style={{
-                        fontSize: 10,
-                        padding: '6px 14px',
+                        fontSize: 12,
+                        padding: '7px 16px',
                         borderRadius: 999,
-                        border: '1px solid var(--border)',
+                        border: '1px solid rgba(196,168,130,0.15)',
                         color: 'var(--muted)',
                         fontFamily: "'Satoshi', monospace",
                         letterSpacing: '0.05em',
