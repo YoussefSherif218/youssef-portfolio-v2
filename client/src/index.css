@@ -808,6 +808,184 @@
 }
 
 /* ============================================================================
+   PHONE PREVIEW
+   ============================================================================ */
+.phone-preview-btn {
+  position: fixed;
+  right: 28px;
+  bottom: 32px;
+  z-index: 40;
+}
+
+.phone-preview-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.phone-preview-circle:hover {
+  transform: scale(1.1);
+  color: var(--accent);
+  border-color: rgba(196,168,130,0.3);
+  box-shadow: 0 8px 30px rgba(196,168,130,0.2);
+}
+
+.phone-preview-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  animation: phone-preview-fade-in 0.3s ease;
+}
+
+@keyframes phone-preview-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.phone-preview-modal {
+  position: relative;
+  animation: phone-preview-slide-up 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes phone-preview-slide-up {
+  from { opacity: 0; transform: translateY(40px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.phone-preview-close {
+  position: absolute;
+  top: -48px;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s;
+  z-index: 10;
+}
+
+.phone-preview-close:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.phone-preview-frame {
+  width: 375px;
+  height: 812px;
+  border-radius: 40px;
+  border: 4px solid rgba(255,255,255,0.15);
+  overflow: hidden;
+  position: relative;
+  background: #000;
+  box-shadow:
+    0 0 0 2px rgba(255,255,255,0.05),
+    0 40px 100px rgba(0,0,0,0.6),
+    0 0 80px rgba(196,168,130,0.08);
+}
+
+.phone-preview-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 28px;
+  background: #000;
+  border-radius: 0 0 20px 20px;
+  z-index: 5;
+}
+
+.phone-preview-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: var(--bg);
+}
+
+/* Light mode phone frame */
+:root:not(.dark) .phone-preview-frame {
+  border-color: rgba(0,0,0,0.15);
+  box-shadow:
+    0 0 0 2px rgba(0,0,0,0.05),
+    0 40px 100px rgba(0,0,0,0.2),
+    0 0 80px rgba(160,128,96,0.06);
+}
+
+:root:not(.dark) .phone-preview-overlay {
+  background: rgba(240,236,230,0.9);
+}
+
+:root:not(.dark) .phone-preview-close {
+  background: rgba(0,0,0,0.05);
+  border-color: rgba(0,0,0,0.1);
+  color: var(--text);
+}
+
+:root:not(.dark) .phone-preview-close:hover {
+  background: rgba(0,0,0,0.1);
+}
+
+:root:not(.dark) .phone-preview-circle {
+  background: var(--surface);
+  border-color: rgba(0,0,0,0.1);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+:root:not(.dark) .phone-preview-circle:hover {
+  color: var(--accent);
+  border-color: rgba(160,128,96,0.3);
+  box-shadow: 0 8px 30px rgba(160,128,96,0.15);
+}
+
+/* Hide phone preview button on small screens */
+@media (max-width: 768px) {
+  .phone-preview-btn {
+    display: none;
+  }
+}
+
+/* Responsive phone frame */
+@media (max-height: 860px) {
+  .phone-preview-frame {
+    height: 700px;
+    width: 320px;
+    border-radius: 32px;
+  }
+  .phone-preview-notch {
+    width: 120px;
+    height: 24px;
+  }
+}
+
+@media (max-height: 740px) {
+  .phone-preview-frame {
+    height: 600px;
+    width: 280px;
+    border-radius: 28px;
+  }
+}
+
+/* ============================================================================
    RESPONSIVE — TABLET (max-width: 1024px)
    ============================================================================ */
 @media (max-width: 1024px) {
