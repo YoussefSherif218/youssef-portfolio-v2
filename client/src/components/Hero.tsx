@@ -12,20 +12,20 @@ export default function Hero() {
 
     // Cinematic portrait fade in & slight scale down
     tl.fromTo('.h-cinematic-portrait',
-      { opacity: 0, scale: 1.1, filter: 'blur(20px)' },
-      { opacity: 0.85, scale: 1, filter: 'blur(0px)', duration: 2.5, ease: 'power2.out' }
+      { opacity: 0, scale: 1.05, filter: 'blur(10px)' },
+      { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 2.0, ease: 'power2.out' }
     )
       // Glass panel slides in from the left
       .fromTo('.h-glass-panel',
         { opacity: 0, x: -60, filter: 'blur(10px)' },
         { opacity: 1, x: 0, filter: 'blur(0px)', duration: 1.4, ease: e },
-        '-=1.8'
+        '-=1.4'
       )
       // Elements inside the glass panel stagger
       .fromTo('.h-stagger',
         { opacity: 0, y: 20 },
         { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: e },
-        '-=1.0'
+        '-=0.8'
       );
 
     return () => { tl.kill(); };
@@ -102,12 +102,9 @@ export default function Hero() {
             alt="Youssef Sherif"
             className="h-cinematic-portrait relative w-auto max-w-full h-[75vh] lg:h-[88vh] object-contain object-right-bottom"
             style={{
-              // Deep fade on the left side to blend with the dark background, and fade at the very bottom
-              maskImage: 'linear-gradient(to right, transparent 0%, black 25%), linear-gradient(to top, transparent 0%, black 15%)',
-              maskComposite: 'intersect',
-              WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 25%), linear-gradient(to top, transparent 0%, black 15%)',
-              WebkitMaskComposite: 'source-in',
-              opacity: 0.85, // Subtle transparency for cinematic feel
+              // Subtle fade on the left edge to blend with background
+              maskImage: 'linear-gradient(to right, transparent 0%, black 30%)',
+              WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 30%)',
             }}
           />
         </div>

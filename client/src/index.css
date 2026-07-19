@@ -821,22 +821,30 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 52px;
-  height: 52px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  color: var(--muted);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+  border: none;
+  color: #fff;
   cursor: pointer;
   transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  box-shadow:
+    0 4px 20px rgba(196,168,130,0.3),
+    0 0 40px rgba(196,168,130,0.1);
+  animation: phone-btn-pulse 2s ease-in-out infinite;
+}
+
+@keyframes phone-btn-pulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(196,168,130,0.3), 0 0 40px rgba(196,168,130,0.1); }
+  50% { box-shadow: 0 4px 30px rgba(196,168,130,0.5), 0 0 60px rgba(196,168,130,0.2); }
 }
 
 .phone-preview-circle:hover {
-  transform: scale(1.1);
-  color: var(--accent);
-  border-color: rgba(196,168,130,0.3);
-  box-shadow: 0 8px 30px rgba(196,168,130,0.2);
+  transform: scale(1.12);
+  box-shadow:
+    0 8px 35px rgba(196,168,130,0.5),
+    0 0 60px rgba(196,168,130,0.2);
 }
 
 .phone-preview-overlay {
@@ -946,15 +954,16 @@
 }
 
 :root:not(.dark) .phone-preview-circle {
-  background: var(--surface);
-  border-color: rgba(0,0,0,0.1);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  background: linear-gradient(135deg, #a08060 0%, #8a6a50 100%);
+  box-shadow:
+    0 4px 20px rgba(160,128,96,0.25),
+    0 0 40px rgba(160,128,96,0.08);
 }
 
 :root:not(.dark) .phone-preview-circle:hover {
-  color: var(--accent);
-  border-color: rgba(160,128,96,0.3);
-  box-shadow: 0 8px 30px rgba(160,128,96,0.15);
+  box-shadow:
+    0 8px 35px rgba(160,128,96,0.4),
+    0 0 60px rgba(160,128,96,0.15);
 }
 
 /* Hide phone preview button on small screens */
