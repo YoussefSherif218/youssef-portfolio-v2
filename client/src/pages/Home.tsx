@@ -74,23 +74,6 @@ export default function Home() {
       {/* Footer */}
       <Footer />
 
-      {/* Floating CV Sidebar */}
-      <div className="cv-sidebar">
-        <a
-          href="/Youssef.Sherif_CV.pdf"
-          download="Youssef.Sherif_CV.pdf"
-          className="cv-circle"
-          title="Download CV"
-        >
-          <svg viewBox="0 0 60 60" className="cv-icon">
-            <circle cx="30" cy="30" r="28" fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 3" className="cv-ring" />
-            <text x="30" y="23" textAnchor="middle" fontSize="20" fontWeight="900" fill="currentColor" fontFamily="Satoshi, sans-serif" letterSpacing="1.5">CV</text>
-            <path d="M21 36 L30 45 L39 36" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-            <line x1="30" y1="36" x2="30" y2="28" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-          </svg>
-        </a>
-      </div>
-
       {/* Phone Preview Button */}
       <div className="phone-preview-btn">
         <button
