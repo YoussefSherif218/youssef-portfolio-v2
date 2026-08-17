@@ -77,8 +77,8 @@ export default function Home() {
       {/* Floating CV Sidebar */}
       <div className="cv-sidebar">
         <a
-          href="/Youssef_Sherif__CVV.pdf"
-          download="Youssef_Sherif_CV.pdf"
+          href="/Youssef.Sherif_CV.pdf"
+          download="Youssef.Sherif_CV.pdf"
           className="cv-circle"
           title="Download CV"
         >
