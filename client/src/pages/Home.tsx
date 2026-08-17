@@ -10,7 +10,7 @@ import Certifications from '@/components/Certifications';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import ThemeToggle from '@/components/ThemeToggle';
-import { Smartphone, X } from 'lucide-react';
+import { Smartphone, X, FileText } from 'lucide-react';
 
 /**
  * HOME PAGE
@@ -73,6 +73,19 @@ export default function Home() {
 
       {/* Footer */}
       <Footer />
+
+      {/* Floating CV Sidebar */}
+      <div className="cv-sidebar">
+        <a
+          href="/Youssef.Sherif_CV.pdf"
+          download="Youssef.Sherif_CV.pdf"
+          className="cv-circle"
+          title="Download CV"
+        >
+          <div className="cv-ring" />
+          <FileText size={20} className="cv-icon" />
+        </a>
+      </div>
 
       {/* Phone Preview Button */}
       <div className="phone-preview-btn">
