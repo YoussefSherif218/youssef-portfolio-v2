@@ -32,16 +32,16 @@ export default function Experience() {
   }, []);
 
   const items = [
-    { title: 'Applied AI & Data Analytics Scholar', co: 'Digilians Initiative — MCIT', p: 'Dec 2025 — Present', year: '2026', desc: 'Selected for a 9-month scholarship by Egypt\'s Ministry of Communications. Applying statistics, probability, and data analysis using Python, SQL, and Excel.', tags: ['Python', 'SQL', 'Excel', 'Statistics', 'ML', 'DL', 'Tableau', 'Power BI'], cur: true, type: 'work' },
-    { title: 'Bachelor\'s in Biotechnology', co: 'Cairo University', p: 'Sep 2019 — Jun 2023', year: '2023', desc: 'Graduated from Cairo University with a Bachelor\'s degree in Biotechnology.', tags: [], type: 'edu' },
-    { title: 'Senior Social Media Specialist', co: 'Arcktech Marketing Agency', p: 'Feb 2025 — Oct 2025', year: '2025', desc: 'Managed content creation and scheduling for 7 social media accounts across various industries.', tags: ['Content Strategy', 'Meta Business Suite', 'Canva'], type: 'work' },
-    { title: 'Social Media Marketing Track', co: 'ITI — MCIT, Fayoum', p: 'Nov 2024 — Mar 2025', year: '2025', desc: 'Intensive training in social media marketing strategy, analytics, and content creation.', tags: [], type: 'edu' },
+    { title: 'Bachelor\'s in Biotechnology', co: 'Cairo University', p: 'Sep 2019 — Jun 2023', year: '2019', desc: 'Graduated from Cairo University with a Bachelor\'s degree in Biotechnology.', tags: [], type: 'edu' },
+    { title: 'Customer Service Representative', co: 'Concentrix', p: 'Oct 2020 — Feb 2022', year: '2020', desc: 'Handled inbound and outbound customer calls with professionalism and effective communication.', tags: ['Communication', 'Problem Solving', 'CRM'], type: 'work' },
+    { title: 'Social Media Specialist', co: 'Creative Digital Marketing', p: 'Jan 2023 — Feb 2024', year: '2023', desc: 'Spearheaded digital marketing campaigns that expanded brand visibility.', tags: ['Digital Marketing', 'Copywriting', 'Brand Strategy'], type: 'work' },
     { title: 'Social Media Specialist', co: 'Vook Marketing Agency', p: 'Mar 2024 — Dec 2024', year: '2024', desc: 'Managed and grew clients\' social media accounts. Created strategies aligned with brand goals.', tags: ['Social Media', 'Content Creation', 'Analytics'], type: 'work' },
-    { title: 'Social Media Specialist', co: 'Creative Digital Marketing', p: 'Jan 2023 — Feb 2024', year: '2024', desc: 'Spearheaded digital marketing campaigns that expanded brand visibility.', tags: ['Digital Marketing', 'Copywriting', 'Brand Strategy'], type: 'work' },
-    { title: 'Customer Service Representative', co: 'Concentrix', p: 'Oct 2020 — Feb 2022', year: '2021', desc: 'Handled inbound and outbound customer calls with professionalism and effective communication.', tags: ['Communication', 'Problem Solving', 'CRM'], type: 'work' },
+    { title: 'Social Media Marketing Track', co: 'ITI — MCIT, Fayoum', p: 'Nov 2024 — Mar 2025', year: '2024', desc: 'Intensive training in social media marketing strategy, analytics, and content creation.', tags: [], type: 'edu' },
+    { title: 'Senior Social Media Specialist', co: 'Arcktech Marketing Agency', p: 'Feb 2025 — Oct 2025', year: '2025', desc: 'Managed content creation and scheduling for 7 social media accounts across various industries.', tags: ['Content Strategy', 'Meta Business Suite', 'Canva'], type: 'work' },
+    { title: 'Applied AI & Data Analytics Scholar', co: 'Digilians Initiative — MCIT', p: 'Dec 2025 — Present', year: '2025', desc: 'Selected for a 9-month scholarship by Egypt\'s Ministry of Communications. Applying statistics, probability, and data analysis using Python, SQL, and Excel.', tags: ['Python', 'SQL', 'Excel', 'Statistics', 'ML', 'DL', 'Tableau', 'Power BI'], cur: true, type: 'work' },
   ];
 
-  // Already sorted newest-first, add an index for alternating left/right
+  // Sorted oldest-first (chronological journey)
   const sorted = items;
 
   return (

@@ -22,7 +22,7 @@ export default function Certifications() {
         <div className="container">
           <div style={{ maxWidth: 1400, margin: '0 auto' }}>
             <div className="mb-16" data-gsap="fade-up">
-              <p className="section-label mb-4">06 / Certifications</p>
+              <p className="section-label mb-4">07 / Certifications</p>
               <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.8rem)', fontWeight: 700, marginBottom: 20 }}>
                 Professional <span style={{ color: 'var(--accent)' }}>Certifications</span>
               </h2>

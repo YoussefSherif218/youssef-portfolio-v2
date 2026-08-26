@@ -1,11 +1,13 @@
 import { useGsapSection } from '@/hooks/useGsap';
-import { ArrowRight, Mail, Linkedin, Github, MapPin, Send, Calendar, Copy } from 'lucide-react';
-import { useState } from 'react';
+import { ArrowRight, Mail, Linkedin, Github, MapPin, Send, Calendar, Copy, CheckCircle, Loader2 } from 'lucide-react';
+import { useState, useRef, FormEvent } from 'react';
 
 export default function Contact() {
   const ref = useGsapSection<HTMLElement>();
   const [activeType, setActiveType] = useState('Data Analyst');
   const [copied, setCopied] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const formRef = useRef<HTMLFormElement>(null);
 
   const types = ['Data Analyst', 'ML Engineer', 'Freelance', 'Other'];
 
@@ -13,6 +15,39 @@ export default function Contact() {
     navigator.clipboard.writeText('yshreef924@gmail.com');
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!formRef.current) return;
+
+    setStatus('sending');
+
+    const formData = new FormData(formRef.current);
+    formData.append('access_key', '966c88e9-9db5-4dde-aa71-1d7fe9296fb5');
+    formData.append('subject', `New ${activeType} Inquiry from ${formData.get('name')}`);
+    formData.append('from_name', 'Portfolio Contact Form');
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus('success');
+        formRef.current?.reset();
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 5000);
+      }
+    } catch {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 5000);
+    }
   };
 
   return (
@@ -110,6 +145,7 @@ export default function Contact() {
                 {types.map(t => (
                   <button
                     key={t}
+                    type="button"
                     onClick={() => setActiveType(t)}
                     style={{
                       fontSize: 15,
@@ -130,9 +166,71 @@ export default function Contact() {
                 ))}
               </div>
 
-              {/* Name & Email */}
-              <div className="contact-form-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
-                <div>
+              {/* Hidden type field */}
+              <input type="hidden" name="inquiry_type" value={activeType} />
+
+              {/* Form */}
+              <form ref={formRef} onSubmit={handleSubmit}>
+                {/* Name & Email */}
+                <div className="contact-form-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+                  <div>
+                    <label style={{
+                      fontSize: 14,
+                      color: 'var(--accent)',
+                      fontFamily: "'Satoshi', monospace",
+                      letterSpacing: '0.1em',
+                      textTransform: 'uppercase',
+                      display: 'block',
+                      marginBottom: 8,
+                    }}>NAME</label>
+                    <input type="text" name="name" required placeholder="Your name" style={{
+                      width: '100%',
+                      padding: '18px 20px',
+                      background: 'var(--bg)',
+                      border: '1px solid var(--border)',
+                      borderRadius: 8,
+                      color: 'var(--text)',
+                      fontSize: 18,
+                      fontFamily: "'Satoshi', sans-serif",
+                      outline: 'none',
+                      transition: 'border-color 0.25s',
+                      boxSizing: 'border-box',
+                    }}
+                      onFocus={(e) => e.currentTarget.style.borderColor = 'rgba(196,168,130,0.4)'}
+                      onBlur={(e) => e.currentTarget.style.borderColor = 'var(--border)'}
+                    />
+                  </div>
+                  <div>
+                    <label style={{
+                      fontSize: 14,
+                      color: 'var(--accent)',
+                      fontFamily: "'Satoshi', monospace",
+                      letterSpacing: '0.1em',
+                      textTransform: 'uppercase',
+                      display: 'block',
+                      marginBottom: 8,
+                    }}>EMAIL</label>
+                    <input type="email" name="email" required placeholder="your@email.com" style={{
+                      width: '100%',
+                      padding: '18px 20px',
+                      background: 'var(--bg)',
+                      border: '1px solid var(--border)',
+                      borderRadius: 8,
+                      color: 'var(--text)',
+                      fontSize: 18,
+                      fontFamily: "'Satoshi', sans-serif",
+                      outline: 'none',
+                      transition: 'border-color 0.25s',
+                      boxSizing: 'border-box',
+                    }}
+                      onFocus={(e) => e.currentTarget.style.borderColor = 'rgba(196,168,130,0.4)'}
+                      onBlur={(e) => e.currentTarget.style.borderColor = 'var(--border)'}
+                    />
+                  </div>
+                </div>
+
+                {/* Note */}
+                <div style={{ marginBottom: 24 }}>
                   <label style={{
                     fontSize: 14,
                     color: 'var(--accent)',
@@ -141,143 +239,126 @@ export default function Contact() {
                     textTransform: 'uppercase',
                     display: 'block',
                     marginBottom: 8,
-                  }}>NAME</label>
-                  <input type="text" placeholder="" style={{
-                    width: '100%',
-                    padding: '18px 20px',
-                    background: 'var(--bg)',
-                    border: '1px solid var(--border)',
-                    borderRadius: 8,
-                    color: 'var(--text)',
-                    fontSize: 18,
-                    fontFamily: "'Satoshi', sans-serif",
-                    outline: 'none',
-                    transition: 'border-color 0.25s',
-                  }}
+                  }}>NOTE</label>
+                  <textarea
+                    name="message"
+                    rows={4}
+                    required
+                    placeholder="Tell me about the role, project, or what you'd like me to analyze."
+                    style={{
+                      width: '100%',
+                      padding: '16px 18px',
+                      background: 'var(--bg)',
+                      border: '1px solid var(--border)',
+                      borderRadius: 8,
+                      color: 'var(--text)',
+                      fontSize: 16,
+                      fontFamily: "'Satoshi', sans-serif",
+                      outline: 'none',
+                      resize: 'vertical',
+                      transition: 'border-color 0.25s',
+                      boxSizing: 'border-box',
+                    }}
                     onFocus={(e) => e.currentTarget.style.borderColor = 'rgba(196,168,130,0.4)'}
                     onBlur={(e) => e.currentTarget.style.borderColor = 'var(--border)'}
                   />
                 </div>
-                <div>
-                  <label style={{
-                    fontSize: 14,
-                    color: 'var(--accent)',
+
+                {/* Action Buttons */}
+                <div className="contact-actions" style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+                  <button type="submit" disabled={status === 'sending'} style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    padding: '18px 36px',
+                    borderRadius: 999,
+                    border: '1px solid var(--accent)',
+                    background: status === 'sending' ? 'rgba(196,168,130,0.7)' : 'var(--accent)',
+                    color: 'var(--bg)',
+                    fontSize: 15,
+                    fontWeight: 600,
                     fontFamily: "'Satoshi', monospace",
                     letterSpacing: '0.1em',
                     textTransform: 'uppercase',
-                    display: 'block',
-                    marginBottom: 8,
-                  }}>EMAIL</label>
-                  <input type="email" placeholder="" style={{
-                    width: '100%',
-                    padding: '18px 20px',
-                    background: 'var(--bg)',
+                    textDecoration: 'none',
+                    cursor: status === 'sending' ? 'wait' : 'pointer',
+                    transition: 'all 0.25s',
+                  }}>
+                    {status === 'sending' ? (
+                      <>
+                        <Loader2 size={16} style={{ animation: 'spin 1s linear infinite' }} /> SENDING...
+                      </>
+                    ) : (
+                      <>SEND MESSAGE <ArrowRight size={16} /></>
+                    )}
+                  </button>
+                  <button type="button" onClick={copyEmail} style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    padding: '18px 32px',
+                    borderRadius: 999,
                     border: '1px solid var(--border)',
-                    borderRadius: 8,
-                    color: 'var(--text)',
-                    fontSize: 18,
-                    fontFamily: "'Satoshi', sans-serif",
-                    outline: 'none',
-                    transition: 'border-color 0.25s',
-                  }}
-                    onFocus={(e) => e.currentTarget.style.borderColor = 'rgba(196,168,130,0.4)'}
-                    onBlur={(e) => e.currentTarget.style.borderColor = 'var(--border)'}
-                  />
+                    background: 'transparent',
+                    color: 'var(--muted)',
+                    fontSize: 15,
+                    fontWeight: 500,
+                    fontFamily: "'Satoshi', monospace",
+                    letterSpacing: '0.1em',
+                    textTransform: 'uppercase',
+                    cursor: 'pointer',
+                    transition: 'all 0.25s',
+                  }}>
+                    {copied ? 'COPIED!' : 'COPY EMAIL'} <Copy size={13} />
+                  </button>
                 </div>
-              </div>
 
-              {/* Note */}
-              <div style={{ marginBottom: 24 }}>
-                <label style={{
-                  fontSize: 14,
-                  color: 'var(--accent)',
-                  fontFamily: "'Satoshi', monospace",
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                  display: 'block',
-                  marginBottom: 8,
-                }}>NOTE</label>
-                <textarea
-                  rows={4}
-                  placeholder="Tell me about the role, project, or what you'd like me to analyze."
-                  style={{
-                    width: '100%',
-                    padding: '16px 18px',
-                    background: 'var(--bg)',
-                    border: '1px solid var(--border)',
-                    borderRadius: 8,
-                    color: 'var(--text)',
-                    fontSize: 16,
-                    fontFamily: "'Satoshi', sans-serif",
-                    outline: 'none',
-                    resize: 'vertical',
-                    transition: 'border-color 0.25s',
-                  }}
-                  onFocus={(e) => e.currentTarget.style.borderColor = 'rgba(196,168,130,0.4)'}
-                  onBlur={(e) => e.currentTarget.style.borderColor = 'var(--border)'}
-                />
-              </div>
+                {/* Status Messages */}
+                {status === 'success' && (
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    marginTop: 16,
+                    padding: '14px 20px',
+                    background: 'rgba(34,197,94,0.1)',
+                    border: '1px solid rgba(34,197,94,0.3)',
+                    borderRadius: 10,
+                    color: '#22c55e',
+                    fontSize: 14,
+                    fontFamily: "'Satoshi', monospace",
+                    fontWeight: 600,
+                  }}>
+                    <CheckCircle size={18} /> Message sent successfully! I'll get back to you soon.
+                  </div>
+                )}
+                {status === 'error' && (
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    marginTop: 16,
+                    padding: '14px 20px',
+                    background: 'rgba(239,68,68,0.1)',
+                    border: '1px solid rgba(239,68,68,0.3)',
+                    borderRadius: 10,
+                    color: '#ef4444',
+                    fontSize: 14,
+                    fontFamily: "'Satoshi', monospace",
+                    fontWeight: 600,
+                  }}>
+                    ❌ Failed to send. Please try again or email me directly.
+                  </div>
+                )}
+              </form>
 
-              {/* Action Buttons */}
-              <div className="contact-actions" style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
-                <a href="mailto:yshreef924@gmail.com" style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  padding: '18px 36px',
-                  borderRadius: 999,
-                  border: '1px solid var(--accent)',
-                  background: 'var(--accent)',
-                  color: 'var(--bg)',
-                  fontSize: 15,
-                  fontWeight: 600,
-                  fontFamily: "'Satoshi', monospace",
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                  textDecoration: 'none',
-                  transition: 'all 0.25s',
-                }}>
-                  SEND MESSAGE <ArrowRight size={16} />
-                </a>
-                <button style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  padding: '18px 32px',
-                  borderRadius: 999,
-                  border: '1px solid var(--border)',
-                  background: 'transparent',
-                  color: 'var(--muted)',
-                  fontSize: 15,
-                  fontWeight: 500,
-                  fontFamily: "'Satoshi', monospace",
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                  cursor: 'pointer',
-                  transition: 'all 0.25s',
-                }}>
-                  BOOK A CALL <Calendar size={16} />
-                </button>
-                <button onClick={copyEmail} style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  padding: '18px 32px',
-                  borderRadius: 999,
-                  border: 'none',
-                  background: 'transparent',
-                  color: 'var(--muted)',
-                  fontSize: 15,
-                  fontWeight: 500,
-                  fontFamily: "'Satoshi', monospace",
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                  cursor: 'pointer',
-                  transition: 'all 0.25s',
-                }}>
-                  {copied ? 'COPIED!' : 'COPY EMAIL'} <Copy size={13} />
-                </button>
-              </div>
+              {/* Spin animation for loader */}
+              <style>{`
+                @keyframes spin {
+                  from { transform: rotate(0deg); }
+                  to { transform: rotate(360deg); }
+                }
+              `}</style>
             </div>
 
             {/* Right: Correspondence */}

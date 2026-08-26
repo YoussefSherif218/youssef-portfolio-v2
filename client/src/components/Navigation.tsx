@@ -1,9 +1,35 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
+function useCairoTime() {
+  const [time, setTime] = useState(() => formatCairoTime());
+  useEffect(() => {
+    const interval = setInterval(() => setTime(formatCairoTime()), 1000);
+    return () => clearInterval(interval);
+  }, []);
+  return time;
+}
+
+function formatCairoTime() {
+  const now = new Date();
+  const time = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Africa/Cairo',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: true,
+  }).format(now);
+  const offset = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Africa/Cairo',
+    timeZoneName: 'shortOffset',
+  }).formatToParts(now).find((p) => p.type === 'timeZoneName')?.value || 'UTC+2';
+  return { time, offset };
+}
+
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { time, offset } = useCairoTime();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -18,6 +44,7 @@ export default function Navigation() {
     { label: 'Skills', href: '#skills' },
     { label: 'Credentials', href: '#credentials' },
     { label: 'Certifications', href: '#certifications' },
+    { label: 'Analytics', href: '#analytics' },
     { label: 'Contact', href: '#contact' },
   ];
 
@@ -35,6 +62,37 @@ export default function Navigation() {
         <a href="#" className="flex items-center gap-2" style={{ fontFamily: "'General Sans', sans-serif", fontWeight: 700, fontSize: 20, color: 'var(--text)', textDecoration: 'none' }}>
           <span style={{ color: 'var(--accent)' }}>Y</span>S
         </a>
+
+        {/* Live Cairo Time — desktop only */}
+        <div className="hidden md:flex items-center gap-3" style={{ marginLeft: -40 }}>
+          <span style={{
+            fontFamily: "'Satoshi', sans-serif",
+            fontSize: 10,
+            fontWeight: 600,
+            color: 'var(--muted)',
+            letterSpacing: '0.15em',
+            textTransform: 'uppercase',
+            opacity: 0.5,
+          }}>
+            LOCAL TIME
+          </span>
+          <span style={{
+            fontFamily: "'General Sans', sans-serif",
+            fontSize: 13,
+            fontWeight: 600,
+            color: 'var(--text)',
+          }}>
+            {time}
+          </span>
+          <span style={{
+            fontFamily: "'Satoshi', sans-serif",
+            fontSize: 10,
+            color: 'var(--muted)',
+            opacity: 0.4,
+          }}>
+            {offset}
+          </span>
+        </div>
 
         <div className="hidden md:flex items-center gap-14">
           {links.map((l) => (
@@ -57,13 +115,16 @@ export default function Navigation() {
           ))}
         </div>
 
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden p-2"
-          style={{ background: 'none', border: 'none', color: 'var(--text)' }}
-        >
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        <div className="flex items-center gap-3">
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="md:hidden p-2"
+            style={{ background: 'none', border: 'none', color: 'var(--text)' }}
+          >
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
 
       {mobileOpen && (

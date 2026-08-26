@@ -14,7 +14,7 @@ export default function Credentials() {
 
             {/* Section Header */}
             <div className="mb-16" data-gsap="fade-up">
-              <p className="section-label mb-4">05 / Credentials</p>
+              <p className="section-label mb-4">06 / Credentials</p>
               <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.8rem)', fontWeight: 700, marginBottom: 20 }}>
                 Professional <span style={{ color: 'var(--accent)', fontStyle: 'italic' }}>Credentials</span>
               </h2>

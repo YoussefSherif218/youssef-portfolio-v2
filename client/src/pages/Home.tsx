@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
@@ -7,10 +6,12 @@ import Projects from '@/components/Projects';
 import Skills from '@/components/Skills';
 import Credentials from '@/components/Credentials';
 import Certifications from '@/components/Certifications';
+import Analytics from '@/components/Analytics';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import ThemeToggle from '@/components/ThemeToggle';
-import { Smartphone, X } from 'lucide-react';
+import FloatingCV from '@/components/FloatingCV';
+import HalloIntro from '@/components/HalloIntro';
 
 /**
  * HOME PAGE
@@ -28,10 +29,11 @@ import { Smartphone, X } from 'lucide-react';
  */
 
 export default function Home() {
-  const [phonePreview, setPhonePreview] = useState(false);
-
   return (
     <div className="min-h-screen text-foreground">
+      {/* Handwriting Intro Overlay */}
+      <HalloIntro />
+
       {/* Galaxy nebula background */}
       <div className="galaxy-bg" />
 
@@ -59,6 +61,9 @@ export default function Home() {
       {/* Projects Section */}
       <Projects />
 
+      {/* Analytics Section */}
+      <Analytics />
+
       {/* Skills Section */}
       <Skills />
 
@@ -74,35 +79,8 @@ export default function Home() {
       {/* Footer */}
       <Footer />
 
-      {/* Phone Preview Button */}
-      <div className="phone-preview-btn">
-        <button
-          onClick={() => setPhonePreview(true)}
-          className="phone-preview-circle"
-          title="Preview on Mobile"
-        >
-          <Smartphone size={22} />
-        </button>
-      </div>
-
-      {/* Phone Preview Modal */}
-      {phonePreview && (
-        <div className="phone-preview-overlay" onClick={() => setPhonePreview(false)}>
-          <div className="phone-preview-modal" onClick={(e) => e.stopPropagation()}>
-            <button className="phone-preview-close" onClick={() => setPhonePreview(false)}>
-              <X size={20} />
-            </button>
-            <div className="phone-preview-frame">
-              <div className="phone-preview-notch" />
-              <iframe
-                src={window.location.href}
-                className="phone-preview-iframe"
-                title="Mobile Preview"
-              />
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Floating CV Download */}
+      <FloatingCV />
 
       {/* Theme Toggle */}
       <ThemeToggle />

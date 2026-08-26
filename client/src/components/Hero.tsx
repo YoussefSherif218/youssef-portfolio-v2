@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { ArrowRight, Sparkles, GraduationCap, Clock3, Target, FileDown } from 'lucide-react';
+import { ArrowRight, Sparkles, GraduationCap, Clock3, Target } from 'lucide-react';
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -195,16 +195,6 @@ export default function Hero() {
             </a>
             <a href="#contact" className="btn-secondary h-[54px] px-8 rounded-xl text-[15px] font-bold border-[var(--border)] hover:bg-[var(--glass-bg)] hover:border-[var(--glass-border)]">
               Contact Me
-            </a>
-            <a
-              href="/Youssef.Sherif_CV.pdf"
-              download="Youssef.Sherif_CV.pdf"
-              className="btn-secondary h-[54px] px-8 rounded-xl text-[15px] font-bold border-[var(--border)] hover:bg-[var(--glass-bg)] hover:border-[var(--glass-border)] group"
-            >
-              <span className="flex items-center gap-2">
-                <FileDown size={16} className="transition-transform duration-300 group-hover:-translate-y-0.5" />
-                Download CV
-              </span>
             </a>
           </div>
 

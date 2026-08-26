@@ -154,7 +154,7 @@ export default function Skills() {
 
           {/* Header */}
           <div className="mb-16" data-gsap="fade-up">
-            <p className="section-label mb-6">04 / Skills</p>
+            <p className="section-label mb-6">05 / Skills</p>
             <h2 style={{
               fontSize: 'clamp(3rem, 6vw, 5.5rem)',
               fontWeight: 700,
